@@ -89,6 +89,8 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+venv_psd/
+venv_psd_win/
 
 # idea
 .idea/
