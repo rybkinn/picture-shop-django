@@ -1,0 +1,111 @@
+{% load static %}
+
+<!-- Page Header-->
+<header class="section page-header">
+  <div class="rd-navbar-wrap">
+    <nav class="rd-navbar rd-navbar-default-top-panel" data-sm-stick-up-offset="1px" data-md-stick-up-offset="159px"
+      data-lg-stick-up-offset="203px" data-layout="rd-navbar-fixed" data-sm-layout="rd-navbar-fixed"
+      data-md-layout="rd-navbar-fullwidth" data-md-device-layout="rd-navbar-fixed"
+      data-lg-device-layout="rd-navbar-static" data-lg-layout="rd-navbar-static" data-sm-stick-up="true"
+      data-md-stick-up="true" data-lg-stick-up="true">
+      <!-- RD Navbar Top Panel-->
+      <button class="collapse-toggle" data-rd-navbar-toggle=".rd-navbar-top-panel"><span class="toggle-icon"></span>
+      </button>
+      <div class="rd-navbar-outer outer-1 rd-navbar-top-panel novi-background">
+        <div class="rd-navbar-inner">
+          <div class="rd-navbar-cell">
+            <ul class="navbar-inline-list">
+              <li class="rd-navbar-info">
+                <div class="icon icon-sm-1 mdi mdi-phone novi-icon"></div>
+                <a class="link" href="tel:#">1-800-1234-567</a>
+              </li>
+              <li class="rd-navbar-info">
+                <div class="icon icon-sm-1 mdi mdi-map-marker novi-icon"></div>
+                <a class="link" href="#">2130 Фултон Стрит, Сан-Диего, 94117-1080</a>
+              </li>
+              <li class="rd-navbar-info">
+                <div class="icon icon-sm-1 mdi mdi-email-open novi-icon"></div>
+                <a class="link" href="mailto:#">info@demolink.org</a>
+              </li>
+            </ul>
+          </div>
+          <div class="rd-navbar-cell">
+            <div class="rd-navbar-social"><a class="link fa fa-facebook novi-icon" href="#"></a><a
+                class="link fa fa-twitter novi-icon" href="#"></a><a class="link fa fa-instagram novi-icon"
+                href="#"></a><a class="link fa fa-google novi-icon" href="#"></a><a
+                class="link fa fa-pinterest novi-icon" href="#"></a><a class="link fa fa-linkedin novi-icon"
+                href="#"></a></div>
+          </div>
+          <div class="rd-navbar-cell">
+            <button class="search-toggle rd-navbar-search-desktop"
+              data-rd-navbar-toggle=".rd-navbar-search-desktop">
+              <span class="toggle-icon"></span></button>
+              <!-- Search-->
+            <div class="rd-navbar-search rd-navbar-search-inline rd-navbar-search-desktop rd-search-custom">
+              <form class="rd-search" action="search-results.html" data-search-live="rd-search-results-live"
+                method="GET">
+                <div class="form-wrap"><label class="form-label form-label"
+                    for="rd-navbar-search-form-input">Search...</label>
+                  <input class="rd-navbar-search-form-input form-input" id="rd-navbar-search-form-input" type="text"
+                    name="s" autocomplete="off">
+                </div>
+                <button class="button button-primary" type="submit"><span>Search</span></button>
+                <div class="rd-search-results-live" id="rd-search-results-live"></div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="rd-navbar-outer outer-2 novi-background bg-cover">
+        <div class="rd-navbar-inner">
+          <!-- RD Navbar Panel-->
+          <div class="rd-navbar-cell rd-navbar-panel">
+            <!-- RD Navbar Toggle-->
+            <button class="rd-navbar-toggle" data-rd-navbar-toggle=".rd-navbar-nav"><span
+                class="toggle-icon"></span>
+            </button>
+            <!-- RD Navbar Brand-->
+            <a class="rd-navbar-brand" href="./"><img src="{% static 'images/brand-139x38.png' %}"
+                alt="" width="139" height="38"></a>
+                <!-- Search toggle-->
+            <button class="search-toggle rd-navbar-search-mobile" data-rd-navbar-toggle=".rd-navbar-search-mobile">
+              <span class="toggle-icon"></span></button>
+              <!-- Search-->
+            <div class="rd-navbar-search rd-navbar-search-mobile">
+              <form class="rd-search rd-search-form rd-mailform-inline" action="search-results.html" method="GET">
+                <div class="form-wrap"><label class="form-label form-label"
+                    for="rd-navbar-search-form-input-1">Search...</label>
+                  <input class="rd-navbar-search-form-input form-input" id="rd-navbar-search-form-input-1"
+                    type="text" name="s" autocomplete="off">
+                </div>
+                <button class="button button-primary" type="submit"><span>Search</span></button>
+              </form>
+            </div>
+          </div>
+          <!-- RD Navbar Nav-->
+          <div class="rd-navbar-cell rd-navbar-nav-wrap">
+            <!-- RD Navbar Nav-->
+            <ul class="rd-navbar-nav">
+              <li><a href="/">Главная</a></li>
+              <li><a href="/about-me/">Обо мне</a></li>
+              <li class="rd-navbar--has-dropdown rd-navbar-submenu"><a href="#">Услуги</a>
+                <!-- RD Navbar Dropdown-->
+                <ul class="rd-navbar-dropdown">
+                  <li><a href="#">Портрет</a></li>
+                  <li><a href="#">Услуги уличных художников</a></li>
+                </ul>
+              </li>
+              <li class="rd-navbar--has-dropdown rd-navbar-submenu"><a href="#">Блог</a>
+                <ul class="rd-navbar-dropdown">
+                  <li><a href="#">Блог сетка</a></li>
+                  <li><a href="#">Публикация</a></li>
+                </ul>
+              </li>
+              <li><a href="/contacts/">Контакты</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </div>
+</header>
