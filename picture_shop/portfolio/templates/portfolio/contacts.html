@@ -1,0 +1,138 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Контакты{% endblock %}
+
+{% block content %}
+<section class="section"
+    data-preset="{&quot;title&quot;:&quot;Breadcrumbs Classic&quot;,&quot;category&quot;:&quot;breadcrumbs&quot;,&quot;id&quot;:&quot;breadcrumbs-classic&quot;}">
+    <div class="shell-wide">
+        <div class="bg-dark-overlay section-bredcrumbs custom-bg-image novi-background bg-image-breadcrumbs-1">
+            <div class="breadcrumb-wrapper">
+                <h1 class="title">Контакты</h1>
+                <ol class="breadcrumbs-custom">
+                    <li><a href="./">Главная</a></li>
+                    <li>Контакты</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</section> <!-- Contacts Info-->
+<section class="section section-lg bg-white novi-background bg-cover"
+    data-preset="{&quot;title&quot;:&quot;Contacts&quot;,&quot;category&quot;:&quot;contacts&quot;,&quot;id&quot;:&quot;contact-info&quot;}">
+    <div class="shell-wide">
+        <div class="range range-40 range-center range-fix">
+            <div class="cell-sm-10 cell-md-6">
+                <div class="custom-wrapper">
+                    <h3>Связаться</h3>
+                    <p>Вы можете связаться со мной любым удобным для способом. Я доступна 24/7 по факсу или
+                        e-mail. Вы также можете использовать форму быстрой связи ниже или посетить мою студию
+                        лично. Буду рада ответить на ваши вопросы.</p>
+                    <!-- RD Mailform-->
+                    <form class="rd-mailform text-left" data-form-output="form-output-global"
+                        data-form-type="forms" method="post" action="bat/rd-mailform.php">
+                        <div class="range range-xs-center range-21 range-fix">
+                            <div class="cell-sm-6">
+                                <div class="form-wrap form-wrap-validation"><label
+                                        class="form-label rd-input-label" for="forms-name">Имя</label> <input
+                                        class="form-input" id="forms-name" type="text" name="name"
+                                        data-constraints="@Required"> </div>
+                            </div>
+                            <div class="cell-sm-6">
+                                <div class="form-wrap form-wrap-validation"><label
+                                        class="form-label rd-input-label" for="forms-last-name">Фамилия</label>
+                                    <input class="form-input" id="forms-last-name" type="text" name="last-name"
+                                        data-constraints="@Required"> </div>
+                            </div>
+                            <div class="cell-sm-6">
+                                <div class="form-wrap form-wrap-validation"><label
+                                        class="form-label rd-input-label" for="forms-phone">Телефон</label>
+                                    <input class="form-input" id="forms-phone" type="text" name="phone"
+                                        data-constraints="@Numeric @Required"> </div>
+                            </div>
+                            <div class="cell-sm-6">
+                                <div class="form-wrap form-wrap-validation"><label class="form-label"
+                                        for="forms-email">E-mail</label> <input class="form-input"
+                                        id="forms-email" type="email" name="email"
+                                        data-constraints="@Email @Required"></div>
+                            </div>
+                            <div class="cell-sm-12">
+                                <div class="form-wrap form-wrap-validation"><label
+                                        class="form-label rd-input-label" for="forms-message">Сообщение</label>
+                                    <textarea class="form-input" id="forms-message" name="message"
+                                        data-constraints="@Required"></textarea></div>
+                            </div>
+                        </div>
+                        <div class="form-button"> <button class="button button-primary"
+                                type="submit"><span>Отправить</span></button> </div>
+                    </form>
+                </div>
+            </div>
+            <div class="cell-sm-10 cell-md-6">
+                <div class="range range-xs-center range-30 range-xl-76">
+                    <div class="cell-sm-6">
+                        <h4 class="text-bold">Подписывайтесь</h4>
+                        <div class="divider divider-5"></div>
+                        <ul class="list-inline-2">
+                            <li><a class="icon icon-xs icon novi-icon icon-hover-gray fa-facebook" href="#"></a>
+                            </li>
+                            <li><a class="icon icon-xs icon novi-icon icon-hover-gray fa-twitter" href="#"></a>
+                            </li>
+                            <li><a class="icon icon-xs icon novi-icon icon-hover-gray fa-instagram"
+                                    href="#"></a></li>
+                            <li><a class="icon icon-xs icon novi-icon icon-hover-gray fa-google" href="#"></a>
+                            </li>
+                            <li><a class="icon icon-xs icon novi-icon icon-hover-gray fa-pinterest"
+                                    href="#"></a></li>
+                            <li><a class="icon icon-xs icon novi-icon icon-hover-gray fa-linkedin" href="#"></a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="cell-sm-6">
+                        <h4 class="text-bold">Телефон</h4>
+                        <div class="divider divider-5"></div>
+                        <div class="contact-item unit unit-horizontal unit-spacing-xxs unit-middle">
+                            <div class="unit-left"><span
+                                    class="icon icon-sm-1 icon-primary mdi mdi-phone novi-icon"></span></div>
+                            <div class="unit-body"><a class="hover-text" href="tel:#">1-800-1234-567</a></div>
+                        </div>
+                    </div>
+                    <div class="cell-sm-6">
+                        <h4 class="text-bold">Адрес</h4>
+                        <div class="divider divider-5"></div>
+                        <div class="contact-item unit unit-horizontal unit-spacing-xxs">
+                            <div class="unit-left"><span
+                                    class="icon icon-sm-1 icon-primary mdi mdi-map-marker novi-icon"></span>
+                            </div>
+                            <div class="unit-body"><a class="hover-text" href="#">2130 Фултон Стрит,
+                                    Сан-Диего,&nbsp;94117-1080 USA</a></div>
+                        </div>
+                    </div>
+                    <div class="cell-sm-6">
+                        <h4 class="text-bold">E-mail</h4>
+                        <div class="divider divider-5"></div>
+                        <div class="contact-item unit unit-horizontal unit-spacing-xxs unit-middle">
+                            <div class="unit-left"><span
+                                    class="icon icon-sm-1 icon-primary mdi mdi-email-outline novi-icon"></span>
+                            </div>
+                            <div class="unit-body"><a class="hover-text" href="mailto:#">info@demolink.org</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="google-map-container rd-google-map__model" data-zoom="14"
+                    data-center="9870 St Vincent Place, Glasgow, DC 45 Fr 45."
+                    data-styles="[{&quot;featureType&quot;:&quot;landscape&quot;,&quot;stylers&quot;:[{&quot;saturation&quot;:-100},{&quot;lightness&quot;:60}]},{&quot;featureType&quot;:&quot;road.local&quot;,&quot;stylers&quot;:[{&quot;saturation&quot;:-100},{&quot;lightness&quot;:40},{&quot;visibility&quot;:&quot;on&quot;}]},{&quot;featureType&quot;:&quot;transit&quot;,&quot;stylers&quot;:[{&quot;saturation&quot;:-100},{&quot;visibility&quot;:&quot;simplified&quot;}]},{&quot;featureType&quot;:&quot;administrative.province&quot;,&quot;stylers&quot;:[{&quot;visibility&quot;:&quot;off&quot;}]},{&quot;featureType&quot;:&quot;water&quot;,&quot;stylers&quot;:[{&quot;visibility&quot;:&quot;on&quot;},{&quot;lightness&quot;:30}]},{&quot;featureType&quot;:&quot;road.highway&quot;,&quot;elementType&quot;:&quot;geometry.fill&quot;,&quot;stylers&quot;:[{&quot;color&quot;:&quot;#ef8c25&quot;},{&quot;lightness&quot;:40}]},{&quot;featureType&quot;:&quot;road.highway&quot;,&quot;elementType&quot;:&quot;geometry.stroke&quot;,&quot;stylers&quot;:[{&quot;visibility&quot;:&quot;off&quot;}]},{&quot;featureType&quot;:&quot;poi.park&quot;,&quot;elementType&quot;:&quot;geometry.fill&quot;,&quot;stylers&quot;:[{&quot;color&quot;:&quot;#b6c54c&quot;},{&quot;lightness&quot;:40},{&quot;saturation&quot;:-40}]},{}]">
+                    <div class="google-map"></div>
+                    <ul class="google-map-markers">
+                        <li data-location="9870 St Vincent Place, Glasgow, DC 45 Fr 45."
+                            data-description="9870 St Vincent Place, Glasgow"
+                            data-icon="{% static 'images/gmap_marker_1.png' %}"
+                            data-icon-active="{% static 'images/gmap_marker_active_1.png' %}"></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
