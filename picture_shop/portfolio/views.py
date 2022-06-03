@@ -24,3 +24,7 @@ def portrait(request):
 
 def street_artist_services(request):
     return render(request, 'portfolio/street-artist-services.html')
+
+
+def terms_of_use(request):
+    return render(request, 'portfolio/terms-of-use.html')
