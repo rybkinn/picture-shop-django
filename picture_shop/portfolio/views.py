@@ -12,3 +12,15 @@ def about_me(request):
 
 def contacts(request):
     return render(request, 'portfolio/contacts.html')
+
+
+def services(request):
+    return render(request, 'portfolio/services.html')
+
+
+def portrait(request):
+    return render(request, 'portfolio/portrait.html')
+
+
+def street_artist_services(request):
+    return render(request, 'portfolio/street-artist-services.html')

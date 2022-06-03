@@ -86,13 +86,13 @@
           <div class="rd-navbar-cell rd-navbar-nav-wrap">
             <!-- RD Navbar Nav-->
             <ul class="rd-navbar-nav">
-              <li><a href="/">Главная</a></li>
-              <li><a href="/about-me/">Обо мне</a></li>
-              <li class="rd-navbar--has-dropdown rd-navbar-submenu"><a href="#">Услуги</a>
+              <li><a href="{% url 'home' %}">Главная</a></li>
+              <li><a href="{% url 'about-me' %}">Обо мне</a></li>
+              <li class="rd-navbar--has-dropdown rd-navbar-submenu"><a href="{% url 'services' %}">Услуги</a>
                 <!-- RD Navbar Dropdown-->
                 <ul class="rd-navbar-dropdown">
-                  <li><a href="#">Портрет</a></li>
-                  <li><a href="#">Услуги уличных художников</a></li>
+                  <li><a href="{% url 'portrait' %}">Портрет</a></li>
+                  <li><a href="{% url 'street-artist-services' %}">Услуги уличных художников</a></li>
                 </ul>
               </li>
               <li class="rd-navbar--has-dropdown rd-navbar-submenu"><a href="#">Блог</a>
@@ -101,7 +101,7 @@
                   <li><a href="#">Публикация</a></li>
                 </ul>
               </li>
-              <li><a href="/contacts/">Контакты</a></li>
+              <li><a href="{% url 'contacts' %}">Контакты</a></li>
             </ul>
           </div>
         </div>

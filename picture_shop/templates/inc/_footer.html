@@ -11,11 +11,11 @@
                         <h4>Быстрые ссылки</h4>
                         <div class="divider divider-3"></div>
                         <ul class="list-marked">
-                            <li><a href="/about-me/">Обо мне</a></li>
+                            <li><a href="{% url 'about-me' %}">Обо мне</a></li>
                             <li><a href="#">Портфолио</a></li>
-                            <li><a href="#">Услуги</a></li>
+                            <li><a href="{% url 'services' %}">Услуги</a></li>
                             <li><a href="#">Блог</a></li>
-                            <li><a href="/contacts/">Контакты</a></li>
+                            <li><a href="{% url 'contacts' %}">Контакты</a></li>
                         </ul>
                     </div>
                 </div>
