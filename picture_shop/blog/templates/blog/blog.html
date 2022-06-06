@@ -1,0 +1,194 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Блог{% endblock %}
+
+{% block content %}
+<section class="section"
+    data-preset="{&quot;title&quot;:&quot;Breadcrumbs Classic&quot;,&quot;category&quot;:&quot;breadcrumbs&quot;,&quot;id&quot;:&quot;breadcrumbs-classic&quot;}">
+    <div class="shell-wide">
+        <div class="bg-dark-overlay section-bredcrumbs custom-bg-image novi-background bg-image-breadcrumbs-1">
+            <div class="breadcrumb-wrapper">
+                <h1 class="title">Блог</h1>
+                <ol class="breadcrumbs-custom">
+                    <li><a href="./">Главная</a></li>
+                    <li><a href="#">Блог</a></li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="section section-lg bg-white novi-background bg-cover"
+    data-preset="{&quot;title&quot;:&quot;Grid Blog&quot;,&quot;category&quot;:&quot;blog&quot;,&quot;id&quot;:&quot;grid-blog&quot;}">
+    <div class="shell shell-wide">
+        <div class="range range-40 range-center range-fix">
+            <div class="cell-sm-10 cell-md-8">
+                <div class="range range-30">
+                    <div class="cell-sm-6 cell-flex">
+                        <article class="post-grid custom-bg-image"
+                            style="background-image: url({% static 'images/grid-blog-1-570x400.jpg' %});">
+                            <div class="post-item">
+                                <div class="post-author"><a class="author-media" href="single-post.html"><img
+                                            src="{% static 'images/grid-blog-author-50x50.jpg' %}" alt="" width="50"
+                                            height="50"></a><a class="author-name"
+                                        href="single-post.html">Светлана Мельникова</a></div>
+                            </div>
+                            <div class="post-item">
+                                <div class="content">
+                                    <div class="time"> <time datetime="2018-01-01">Дек. 22, 2018 в 17:07</time>
+                                    </div>
+                                    <h4 class="post-title"><a href="single-post.html">Организация вашей студии:
+                                            советы и рекомендации для начинающих художников</a></h4>
+                                    <div class="post-exeption">
+                                        <p>Одним из наиболее важных аспектов создания идеальной студии является
+                                            возможность найти именно ту, которая вам нужна, за очень короткое
+                                            время...</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="cell-sm-6 cell-flex">
+                        <article class="post-grid custom-bg-image"
+                            style="background-image: url({% static 'images/grid-blog-2-570x400.jpg' %});">
+                            <div class="post-item">
+                                <div class="post-author"><a class="author-media" href="single-post.html"><img
+                                            src="{% static 'images/grid-blog-author-50x50.jpg' %}" alt="" width="50"
+                                            height="50"></a><a class="author-name"
+                                        href="single-post.html">Светлана Мельникова</a></div>
+                            </div>
+                            <div class="post-item">
+                                <div class="content">
+                                    <div class="time"> <time datetime="2018-01-01">Дек. 22, 2018 в 17:07</time>
+                                    </div>
+                                    <h4 class="post-title"><a href="single-post.html">Где искать клиентов</a>
+                                    </h4>
+                                    <div class="post-exeption">
+                                        <p>Лучшие клиенты - не те, кто покупает ваше произведение искусства, а
+                                            те, кто будет продолжать покупать ваши работы в течение многих лет.
+                                            Но как этого достичь?</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="cell-sm-6 cell-flex">
+                        <article class="post-grid custom-bg-image"
+                            style="background-image: url({% static 'images/grid-blog-3-570x400.jpg' %});">
+                            <div class="post-item">
+                                <div class="post-author"><a class="author-media" href="single-post.html"><img
+                                            src="{% static 'images/grid-blog-author-50x50.jpg' %}" alt="" width="50"
+                                            height="50"></a><a class="author-name"
+                                        href="single-post.html">Светлана Мельникова</a></div>
+                            </div>
+                            <div class="post-item">
+                                <div class="content">
+                                    <div class="time"> <time datetime="2018-01-01">Дек. 22, 2018 в 17:07
+                                            pm</time> </div>
+                                    <h4 class="post-title"><a href="single-post.html">Как превратить ваше
+                                            воображение в искусство: советы и рекомендации для начинающих</a>
+                                    </h4>
+                                    <div class="post-exeption">
+                                        <p>У всех нас есть воображение. Но требуется особый навык, чтобы держать
+                                            образ в мыслях и превращать это воображение в искусство. Талант
+                                            может быть естественным подарком, приобретенным навыком или
+                                            комбинацией того и другого.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="cell-sm-6 cell-flex">
+                        <article class="post-grid custom-bg-image"
+                            style="background-image: url({% static 'images/grid-blog-4-570x400.jpg' %});">
+                            <div class="post-item">
+                                <div class="post-author"><a class="author-media" href="single-post.html"><img
+                                            src="{% static 'images/grid-blog-author-50x50.jpg' %}" alt="" width="50"
+                                            height="50"></a><a class="author-name"
+                                        href="single-post.html">Светлана Мельникова</a></div>
+                            </div>
+                            <div class="post-item">
+                                <div class="content">
+                                    <div class="time"> <time datetime="2018-01-01">Дек. 22, 2018 в 17:07</time>
+                                    </div>
+                                    <h4 class="post-title"><a href="single-post.html">Последние тенденции в
+                                            изобразительном искусстве</a></h4>
+                                    <div class="post-exeption">
+                                        <p>Выставка «Artists Helping Artists» была посвящена тенденциям в
+                                            искусстве и тому, что актуально в 2018 году. Я считаю, что тенденции
+                                            не должны влиять на то, что мы создаем. Не стоит менять себя.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+                <div class="post-bottom text-center"> <button
+                        class="button button-primary-outline button-icon button-icon-left"><span><span
+                                class="icon mdi mdi-refresh"></span>Больше публикаций</span></button> </div>
+            </div>
+            <div class="cell-sm-10 cell-md-4">
+                <div class="widget-list">
+                    <div class="widget-list-item">
+                        <h4>Поиск</h4>
+                        <div class="divider divider-5"></div>
+                        <form class="rd-search rd-blog-search rd-search-form rd-mailform-inline"
+                            action="search-results.html" method="GET" data-search-live="rd-search-results-live">
+                            <div class="form-wrap"><label class="form-label form-label rd-input-label"
+                                    for="rd-search-form-input">Поиск...</label> <input class="form-input"
+                                    id="rd-search-form-input" type="text" name="s" autocomplete="off"></div>
+                            <button class="icon mdi mdi-magnify" type="submit"></button>
+                        </form>
+                    </div>
+                    <div class="widget-list-item">
+                        <h4>Архив</h4>
+                        <div class="divider divider-5"></div>
+                        <ul class="list-marked list-2-colums">
+                            <li><a href="#">Март 2018</a></li>
+                            <li><a href="#">Апрель 2018</a></li>
+                            <li><a href="#">Май 2018</a></li>
+                            <li><a href="#">Июнь 2018</a></li>
+                            <li><a href="#">Июль 2018</a></li>
+                            <li><a href="#">Август 2018</a></li>
+                            <li><a href="#">Сентябрь 2018</a></li>
+                            <li><a href="#">Октябрь 2018</a></li>
+                            <li><a href="#">Ноябрь 2018</a></li>
+                            <li><a href="#">Декабрь 2018</a></li>
+                        </ul>
+                    </div>
+                    <div class="widget-list-item">
+                        <h4>Галерея</h4>
+                        <div class="divider divider-5"></div>
+                        <ul class="aside-gallery" data-lightgallery="group">
+                            <li><a class="aside-gallery-item" data-lightgallery="item"
+                                    href="{% static 'images/originals/gallery-image-original-1.jpg' %}"><img
+                                        src="{% static 'images/aside-gallery-1-160x160.jpg' %}" alt="" width="160"
+                                        height="160"></a></li>
+                            <li><a class="aside-gallery-item" data-lightgallery="item"
+                                    href="{% static 'images/originals/gallery-image-original-2.jpg' %}"><img
+                                        src="{% static 'images/aside-gallery-2-160x160.jpg' %}" alt="" width="160"
+                                        height="160"></a></li>
+                            <li><a class="aside-gallery-item" data-lightgallery="item"
+                                    href="{% static 'images/originals/gallery-image-original-3.jpg' %}"><img
+                                        src="{% static 'images/aside-gallery-3-160x160.jpg' %}" alt="" width="160"
+                                        height="160"></a></li>
+                            <li><a class="aside-gallery-item" data-lightgallery="item"
+                                    href="{% static 'images/originals/gallery-image-original-4.jpg' %}"><img
+                                        src="{% static 'images/aside-gallery-4-160x160.jpg' %}" alt="" width="160"
+                                        height="160"></a></li>
+                            <li><a class="aside-gallery-item" data-lightgallery="item"
+                                    href="{% static 'images/originals/gallery-image-original-5.jpg' %}"><img
+                                        src="{% static 'images/aside-gallery-5-160x160.jpg' %}" alt="" width="160"
+                                        height="160"></a></li>
+                            <li><a class="aside-gallery-item" data-lightgallery="item"
+                                    href="{% static 'images/originals/gallery-image-original-6.jpg' %}"><img
+                                        src="{% static 'images/aside-gallery-6-160x160.jpg' %}" alt="" width="160"
+                                        height="160"></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
