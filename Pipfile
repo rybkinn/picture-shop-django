@@ -9,6 +9,7 @@ Django = "==4.0.4"
 sqlparse = "==0.4.2"
 django-environ-2 = "*"
 psycopg2-binary = "*"
+flake8 = "*"
 
 [dev-packages]
 
