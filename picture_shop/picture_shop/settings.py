@@ -32,15 +32,17 @@ ALLOWED_HOSTS = env('ALLOWED_HOSTS')
 # Application definition
 
 INSTALLED_APPS = [
+    # standard django apps
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'portfolio.apps.PortfolioConfig',
-    'shop.apps.ShopConfig',
-    'blog.apps.BlogConfig',
+    # project apps
+    'portfolio',
+    'shop',
+    'blog',
 ]
 
 MIDDLEWARE = [
