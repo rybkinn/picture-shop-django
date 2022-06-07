@@ -6,7 +6,9 @@ import environ
 env = environ.Env(
     # set casting, default value
     DEBUG=(bool, False),
-    ALLOWED_HOSTS=(list, [])
+    ALLOWED_HOSTS=(list, []),
+    USE_I18N=(bool, True),
+    USE_TZ=(bool, True)
 )
 
 
@@ -14,16 +16,12 @@ env = environ.Env(
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
-# Take environment variables from .env file
-# environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
-
-
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = env('SECRET_KEY')
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = env('DEBUG', cast=bool, default=False)
+DEBUG = env('DEBUG')
 
 
 ALLOWED_HOSTS = env('ALLOWED_HOSTS')
@@ -79,21 +77,14 @@ WSGI_APPLICATION = 'picture_shop.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': f'{BASE_DIR}/db.sqlite3',
-#     }
-# }
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': env('POSTGRES_DB'),
-        'USER': env('POSTGRES_USER'),
-        'PASSWORD': env('POSTGRES_PASSWORD'),
+        'ENGINE': env('DB_ENGINE'),
+        'NAME': env('DB_NAME'),
+        'USER': env('DB_USER'),
+        'PASSWORD': env('DB_PASSWORD'),
         'HOST': env('DB_HOST'),
-        'PORT': '5432',
+        'PORT': env('DB_PORT')
     }
 }
 
@@ -119,13 +110,13 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
 
-LANGUAGE_CODE = 'ru'
+LANGUAGE_CODE = env('LANGUAGE_CODE')
 
-TIME_ZONE = 'Europe/Moscow'
+TIME_ZONE = env('TIME_ZONE')
 
-USE_I18N = True
+USE_I18N = env('USE_I18N')
 
-USE_TZ = True
+USE_TZ = env('USE_TZ')
 
 
 # Static files (CSS, JavaScript, Images)
