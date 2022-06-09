@@ -26,7 +26,7 @@ class TagAdmin(admin.ModelAdmin):
 
 class MyClientsAdmin(admin.ModelAdmin):
     list_display = ('name', 'working_position', 'photo', 'facebook', 'twitter',
-                    'instagram', 'comment', 'created_at', 'updated_at')
+                    'instagram', 'short_comment', 'created_at', 'updated_at')
     readonly_fields = ('created_at', 'updated_at')
 
 

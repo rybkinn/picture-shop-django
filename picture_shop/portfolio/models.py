@@ -1,4 +1,5 @@
 from django.db import models
+from django.template.defaultfilters import truncatechars
 
 
 class MyWork(models.Model):
@@ -7,26 +8,26 @@ class MyWork(models.Model):
     picture = models.ImageField(upload_to='my_works/%Y/%m/%d/', blank=True, verbose_name='Картина')
     is_published = models.BooleanField(default=True, verbose_name='Опубликовано')
 
-    def __str__(self):
-        return self.title
-
     class Meta:
         verbose_name = 'Мою работу'
         verbose_name_plural = 'Мои работы'
         ordering = ['title']
 
+    def __str__(self):
+        return self.title
+
 
 class Tag(models.Model):
     name = models.CharField(max_length=50, verbose_name='Название тега')
     slug = models.SlugField(max_length=50, unique=True, verbose_name='Url')
-
-    def __str__(self):
-        return self.name
-
+    
     class Meta:
         verbose_name = 'Тег'
         verbose_name_plural = 'Теги'
         ordering = ['name']
+
+    def __str__(self):
+        return self.name
 
 
 class MyClient(models.Model):
@@ -40,10 +41,14 @@ class MyClient(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата публикации')
     updated_at = models.DateTimeField(auto_now=True, verbose_name='Обновлено')
 
-    def __str__(self):
-        return self.name
-
     class Meta:
         verbose_name = 'Моего клиента'
         verbose_name_plural = 'Мои клиенты'
         ordering = ['name', '-created_at', '-updated_at']
+
+    def __str__(self):
+        return self.name
+
+    @property
+    def short_comment(self):
+        return truncatechars(self.comment, 50)
