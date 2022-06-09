@@ -4,6 +4,7 @@ from django.utils.safestring import mark_safe
 from .models import *
 
 
+@admin.register(MyWork)
 class MyWorkAdmin(admin.ModelAdmin):
     list_display = ('title', 'description', 'picture', 'is_published', 'get_picture')
     list_editable = ('is_published',)
@@ -19,18 +20,14 @@ class MyWorkAdmin(admin.ModelAdmin):
     get_picture.short_description = 'Миниатюра'
 
 
+@admin.register(Tag)
 class TagAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('name',)}
     list_display = ('name', 'slug')
 
 
+@admin.register(MyClient)
 class MyClientsAdmin(admin.ModelAdmin):
     list_display = ('name', 'working_position', 'photo', 'facebook', 'twitter',
                     'instagram', 'short_comment', 'created_at', 'updated_at')
     readonly_fields = ('created_at', 'updated_at')
-
-
-admin.site.register(MyWork, MyWorkAdmin)
-admin.site.register(Tag, TagAdmin)
-admin.site.register(MyClient, MyClientsAdmin)
-
