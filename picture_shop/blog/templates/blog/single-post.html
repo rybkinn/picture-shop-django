@@ -1,0 +1,303 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Болг пост{% endblock %}
+
+{% block content %}
+<section class="section">
+    <div class="shell-wide">
+        <div
+            class="section-bredcrumbs section-bredcrumbs-2 custom-bg-image bg-cover bg-image-breadcrumbs-2 bg-dark-overlay">
+            <div class="breadcrumb-wrapper">
+                <div class="range range-center range-fix">
+                    <div class="cell-sm-10 cell-md-12 cell-lg-10 cell-xl-9">
+                        <p class="date">Декабрь 21, 2018 в 14:05</p>
+                        <h2 class="title"> Организация вашей студии: советы и рекомендации</h2>
+                        <ol class="breadcrumbs-custom">
+                            <li><a href="./">Главная</a></li>
+                            <li><a href="classic-blog.html">Блог</a></li>
+                            <li>Публикация</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="section section-lg bg-white novi-background bg-cover novi-background bg-cover"
+    data-preset="{&quot;title&quot;:&quot;Single Post Section&quot;,&quot;category&quot;:&quot;blog&quot;,&quot;id&quot;:&quot;single-post-section&quot;}">
+    <div class="shell shell-wide">
+        <div class="range range-40 range-center range-fix">
+            <div class="cell-sm-10 cell-md-8 cell-lg-6 cell-lg-preffix-1 cell-lg-postfix-1">
+                <article class="single-post post-section-wrapper">
+                    <div class="post-section">
+                        <p class="post-title-text">Любительские студии рассчитаны на творческий отдых. В них не
+                            учат академическому рисунку и живописи, но можно интересно провести время:
+                            нарисовать незатейливую картину, выпить чаю и пофотографироваться.</p>
+                        <p>Такие студии зарабатывают за счет мастер-классов для людей, которые хотят рисовать,
+                            но не умеют. Клиент платит пару тысяч рублей и в течение пары часов рисует что-то
+                            простое вместе с преподавателем. Если гостю понравилось, он придет еще на несколько
+                            мастер-классов, постепенно ему надоест. Такая студия вынуждена постоянно искать
+                            новых клиентов и придумывать новые форматы развлечений, чтобы не скучали старые.</p>
+                        <img src="{% static 'images/single-post-1-870x490.jpg' %}" alt="" width="870" height="490">
+                        <p>На другом полюсе — мастерские профессиональных художников. Здесь мастера учат
+                            начинающих. Мастер-классы здесь длятся месяцами — пока не напишется картина. Занятия
+                            строго по абонементу или по знакомству, случайных людей нет. Если и есть платное
+                            обучение, то оно стоит десятки тысяч рублей. Эти мастерские дополняют или
+                            конкурируют с художественными училищами.</p>
+                        <ul class="list-inline-2">
+                            <li>Поделиться публикацией:</li>
+                            <li><a class="icon icon-xs icon-hover-gray fa-facebook novi-icon" href="#"></a></li>
+                            <li><a class="icon icon-xs icon-hover-gray fa-twitter novi-icon" href="#"></a></li>
+                            <li><a class="icon icon-xs icon-hover-gray fa-google novi-icon" href="#"></a></li>
+                        </ul>
+                    </div>
+                    <div class="post-section">
+                        <h4>Автор</h4>
+                        <div class="divider divider-5"></div>
+                        <div class="post-author unit unit-spacing-md unit-sm-horizontal">
+                            <div class="unit-left"><img src="{% static 'images/single-post-author-150x150.jpg' %}" alt=""
+                                    width="150" height="150"> </div>
+                            <div class="unit-body">
+                                <h5><a class="heading-link" href="#">Светлана Мельникова</a></h5>
+                                <p class="position">Художник, блогер</p>
+                                <p>Я профессиональный блогер, интересующийся всем, что происходит в
+                                    киберпространстве. Стараюсь сделать этот сайт лучшим местом для посещения
+                                    пользователями. Публикую только те статьи, которые имеют отношение к
+                                    тематике сайта и
+                                    анализирую&nbsp;комментарии&nbsp;всех&nbsp;посетителей,&nbsp;чтобы&nbsp;удовлетворить
+                                    их потребности.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="post-section">
+                        <h4>Комментарии</h4>
+                        <div class="divider divider-5"></div>
+                        <ul class="comment-list">
+                            <li>
+                                <div class="box-comment">
+                                    <div class="box-comment-image"><img src="{% static 'images/box-comment-1-80x80.jpg' %}"
+                                            alt="" width="80" height="80"></div>
+                                    <div class="box-comment-body">
+                                        <ul class="list-inline-3">
+                                            <li>
+                                                <h5><a class="heading-link" href="#">Игорь Сыров</a></h5>
+                                            </li>
+                                            <li class="comment-meta"><span>Декабрь 26, 2018 в 14:56</span></li>
+                                        </ul>
+                                        <p class="comment">Спасибо за интересную статью! Мне всегда было
+                                            интересно, как некоторые художники так быстро создают свои картины.
+                                            Теперь я понимаю, что правильная организация студии важна для этого
+                                            процесса.</p><a class="author-reply" href="#">
+                                            <div class="icon mdi mdi-reply"></div> <span>Ответить</span>
+                                        </a>
+                                    </div>
+                                </div>
+                                <ul class="comment-list-reply">
+                                    <li>
+                                        <div class="box-comment">
+                                            <div class="box-comment-image"><img
+                                                    src="{% static 'images/box-comment-2-80x80.jpg' %}" alt="" width="80"
+                                                    height="80"></div>
+                                            <div class="box-comment-body">
+                                                <ul class="list-inline-3">
+                                                    <li>
+                                                        <h5><a class="heading-link" href="#">Светлана
+                                                                Мельникова</a></h5>
+                                                    </li>
+                                                    <li class="comment-meta"><span>Декабрь 26, 2018 в
+                                                            15:23</span></li>
+                                                    <li class="comment-meta">
+                                                        <div class="reply-author">
+                                                            <div class="icon mdi mdi-reply"></div> <span>Игорю
+                                                                Сырову</span>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                                <p class="comment">Я рада,&nbsp;что мой пост оказался для вас
+                                                    полезным. Собираюсь публиковать советы по организации студии
+                                                    художника в ближайшее время, так что следите за
+                                                    обновлениями...</p><a class="author-reply" href="#">
+                                                    <div class="icon mdi mdi-reply"></div> <span>Ответить</span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="post-section">
+                        <h4>Отправить комментарий</h4>
+                        <div class="divider divider-5"></div>
+                        <!-- RD Mailform-->
+                        <form class="rd-mailform text-left" data-form-output="form-output-global"
+                            data-form-type="forms" method="post" action="bat/rd-mailform.php">
+                            <div class="range range-xs-center range-21 range-fix">
+                                <div class="cell-sm-6">
+                                    <div class="form-wrap form-wrap-validation"><label
+                                            class="form-label rd-input-label" for="forms-name">Имя</label>
+                                        <input class="form-input" id="forms-name" type="text" name="name"
+                                            data-constraints="@Required">
+                                    </div>
+                                </div>
+                                <div class="cell-sm-6">
+                                    <div class="form-wrap form-wrap-validation"><label
+                                            class="form-label rd-input-label"
+                                            for="forms-last-name">Фамилия</label> <input class="form-input"
+                                            id="forms-last-name" type="text" name="last-name"
+                                            data-constraints="@Required"> </div>
+                                </div>
+                                <div class="cell-sm-6">
+                                    <div class="form-wrap form-wrap-validation"><label
+                                            class="form-label rd-input-label" for="forms-phone">Телефон</label>
+                                        <input class="form-input" id="forms-phone" type="text" name="phone"
+                                            data-constraints="@Numeric @Required">
+                                    </div>
+                                </div>
+                                <div class="cell-sm-6">
+                                    <div class="form-wrap form-wrap-validation"><label class="form-label"
+                                            for="forms-email">E-mail</label> <input class="form-input"
+                                            id="forms-email" type="email" name="email"
+                                            data-constraints="@Email @Required"> </div>
+                                </div>
+                                <div class="cell-sm-12">
+                                    <div class="form-wrap form-wrap-validation"><label
+                                            class="form-label rd-input-label"
+                                            for="forms-message">Сообщение</label> <textarea class="form-input"
+                                            id="forms-message" name="message"
+                                            data-constraints="@Required"></textarea> </div>
+                                </div>
+                            </div>
+                            <div class="form-button"> <button class="button button-primary"
+                                    type="submit"><span>Отправить</span></button> </div>
+                        </form>
+                    </div>
+                </article>
+            </div>
+            <div class="cell-sm-10 cell-md-4">
+                <div class="widget-list">
+                    <div class="widget-list-item">
+                        <h4>Поиск</h4>
+                        <div class="divider divider-5"></div>
+                        <form class="rd-search rd-blog-search rd-search-form rd-mailform-inline"
+                            action="search-results.html" method="GET" data-search-live="rd-search-results-live">
+                            <div class="form-wrap"><label class="form-label form-label rd-input-label"
+                                    for="rd-search-form-input">Поиск...</label> <input class="form-input"
+                                    id="rd-search-form-input" type="text" name="s" autocomplete="off"></div>
+                            <button class="icon mdi mdi-magnify" type="submit"></button>
+                        </form>
+                    </div>
+                    <div class="widget-list-item">
+                        <h4>Архив</h4>
+                        <div class="divider divider-5"></div>
+                        <ul class="list-marked list-2-colums">
+                            <li><a href="#">Март 2018</a></li>
+                            <li><a href="#">Апрель 2018</a></li>
+                            <li><a href="#">Май 2018</a></li>
+                            <li><a href="#">Июнь 2018</a></li>
+                            <li><a href="#">Июль 2018</a></li>
+                            <li><a href="#">Август 2018</a></li>
+                            <li><a href="#">Сентябрь 2018</a></li>
+                            <li><a href="#">Октябрь 2018</a></li>
+                            <li><a href="#">Ноябрь 2018</a></li>
+                            <li><a href="#">Декабрь 2018</a></li>
+                        </ul>
+                    </div>
+                    <div class="widget-list-item">
+                        <h4>Галерея</h4>
+                        <div class="divider divider-5"></div>
+                        <ul class="aside-gallery" data-lightgallery="group">
+                            <li><a class="aside-gallery-item" data-lightgallery="item"
+                                    href="{% static 'images/originals/gallery-image-original-1.jpg' %}"><img
+                                        src="{% static 'images/aside-gallery-1-160x160.jpg' %}" alt="" width="160"
+                                        height="160"></a></li>
+                            <li><a class="aside-gallery-item" data-lightgallery="item"
+                                    href="{% static 'images/originals/gallery-image-original-2.jpg' %}"><img
+                                        src="{% static 'images/aside-gallery-2-160x160.jpg' %}" alt="" width="160"
+                                        height="160"></a></li>
+                            <li><a class="aside-gallery-item" data-lightgallery="item"
+                                    href="{% static 'images/originals/gallery-image-original-3.jpg' %}"><img
+                                        src="{% static 'images/aside-gallery-3-160x160.jpg' %}" alt="" width="160"
+                                        height="160"></a></li>
+                            <li><a class="aside-gallery-item" data-lightgallery="item"
+                                    href="{% static 'images/originals/gallery-image-original-4.jpg' %}"><img
+                                        src="{% static 'images/aside-gallery-4-160x160.jpg' %}" alt="" width="160"
+                                        height="160"></a></li>
+                            <li><a class="aside-gallery-item" data-lightgallery="item"
+                                    href="{% static 'images/originals/gallery-image-original-5.jpg' %}"><img
+                                        src="{% static 'images/aside-gallery-5-160x160.jpg' %}" alt="" width="160"
+                                        height="160"></a></li>
+                            <li><a class="aside-gallery-item" data-lightgallery="item"
+                                    href="{% static 'images/originals/gallery-image-original-6.jpg' %}"><img
+                                        src="{% static 'images/aside-gallery-6-160x160.jpg' %}" alt="" width="160"
+                                        height="160"></a></li>
+                        </ul>
+                    </div>
+                    <div class="widget-list-item">
+                        <h4>Категории</h4>
+                        <div class="divider divider-5"></div>
+                        <ul class="list-marked">
+                            <li><a href="#">Портрет</a></li>
+                            <li><a href="#">Пейзаж</a></li>
+                            <li><a href="#">Натюрморт</a></li>
+                            <li><a href="#">Урбан</a></li>
+                            <li><a href="#">Уличный художник</a></li>
+                        </ul>
+                    </div>
+                    <div class="widget-list-item post-recent-wrapper">
+                        <h4>Недавние посты</h4>
+                        <div class="divider divider-5"></div>
+                        <article class="post-recent">
+                            <div class="post-media"><a href="single-post.html"><img
+                                        src="{% static 'images/recent-post-1-160x100.jpg' %}" alt="" width="160"
+                                        height="100"></a></div>
+                            <div class="caption">
+                                <h5 class="post-title"><a class="heading-link"
+                                        href="single-post.html">Организация вашей студии: советы и
+                                        рекомендации</a></h5>
+                                <div class="time"> <time datetime="2018-01-01">Дек. 19, 2018 в 17:31</time>
+                                </div>
+                            </div>
+                        </article>
+                        <article class="post-recent">
+                            <div class="post-media"><a href="single-post.html"><img
+                                        src="{% static 'images/recent-post-2-160x100.jpg' %}" alt="" width="160"
+                                        height="100"></a></div>
+                            <div class="caption">
+                                <h5 class="post-title"><a class="heading-link" href="single-post.html">Где
+                                        искать клиентов: новые подходы сотрудничества</a></h5>
+                                <div class="time"> <time datetime="2018-01-01">Дек. 19, 2018 в 17:31</time>
+                                </div>
+                            </div>
+                        </article>
+                        <article class="post-recent">
+                            <div class="post-media"><a href="single-post.html"><img
+                                        src="{% static 'images/recent-post-3-160x100.jpg' %}" alt="" width="160"
+                                        height="100"></a></div>
+                            <div class="caption">
+                                <h5 class="post-title"><a class="heading-link" href="single-post.html">Последние
+                                        тенденции в изобразительном искусстве</a></h5>
+                                <div class="time"> <time datetime="2018-01-01">Дек. 19, 2018 в 17:31</time>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                    <div class="widget-list-item">
+                        <h4>Обо мне</h4>
+                        <div class="divider divider-5"></div>
+                        <p>Меня зовут Саманта Морган, и я рисую с юных лет. Нахожу вдохновение в инновационных
+                            стилях современного и городского искусства, таких как граффити и иллюстрации.&nbsp;Я
+                            твердо верю, что искусство - это глобальная форма общения. Оно обучает, заставляет
+                            двигаться вперед, доставляет удовольствие и вдохновляет. Искусство может влиять на
+                            эмоции, а человек - на других словами или действиями. Помимо живописи, я также
+                            делюсь своими навыками и знаниями с начинающими художниками на своих курсах
+                            живописи.</p>
+                        <p><a href="about-me.html">Читать дальше...</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
