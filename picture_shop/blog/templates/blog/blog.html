@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load sidebar %}
 
 {% block title %}Блог{% endblock %}
 
@@ -129,63 +130,9 @@
             </div>
             <div class="cell-sm-10 cell-md-4">
                 <div class="widget-list">
-                    <div class="widget-list-item">
-                        <h4>Поиск</h4>
-                        <div class="divider divider-5"></div>
-                        <form class="rd-search rd-blog-search rd-search-form rd-mailform-inline"
-                            action="search-results.html" method="GET" data-search-live="rd-search-results-live">
-                            <div class="form-wrap"><label class="form-label form-label rd-input-label"
-                                    for="rd-search-form-input">Поиск...</label> <input class="form-input"
-                                    id="rd-search-form-input" type="text" name="s" autocomplete="off"></div>
-                            <button class="icon mdi mdi-magnify" type="submit"></button>
-                        </form>
-                    </div>
-                    <div class="widget-list-item">
-                        <h4>Архив</h4>
-                        <div class="divider divider-5"></div>
-                        <ul class="list-marked list-2-colums">
-                            <li><a href="#">Март 2018</a></li>
-                            <li><a href="#">Апрель 2018</a></li>
-                            <li><a href="#">Май 2018</a></li>
-                            <li><a href="#">Июнь 2018</a></li>
-                            <li><a href="#">Июль 2018</a></li>
-                            <li><a href="#">Август 2018</a></li>
-                            <li><a href="#">Сентябрь 2018</a></li>
-                            <li><a href="#">Октябрь 2018</a></li>
-                            <li><a href="#">Ноябрь 2018</a></li>
-                            <li><a href="#">Декабрь 2018</a></li>
-                        </ul>
-                    </div>
-                    <div class="widget-list-item">
-                        <h4>Галерея</h4>
-                        <div class="divider divider-5"></div>
-                        <ul class="aside-gallery" data-lightgallery="group">
-                            <li><a class="aside-gallery-item" data-lightgallery="item"
-                                    href="{% static 'images/originals/gallery-image-original-1.jpg' %}"><img
-                                        src="{% static 'images/aside-gallery-1-160x160.jpg' %}" alt="" width="160"
-                                        height="160"></a></li>
-                            <li><a class="aside-gallery-item" data-lightgallery="item"
-                                    href="{% static 'images/originals/gallery-image-original-2.jpg' %}"><img
-                                        src="{% static 'images/aside-gallery-2-160x160.jpg' %}" alt="" width="160"
-                                        height="160"></a></li>
-                            <li><a class="aside-gallery-item" data-lightgallery="item"
-                                    href="{% static 'images/originals/gallery-image-original-3.jpg' %}"><img
-                                        src="{% static 'images/aside-gallery-3-160x160.jpg' %}" alt="" width="160"
-                                        height="160"></a></li>
-                            <li><a class="aside-gallery-item" data-lightgallery="item"
-                                    href="{% static 'images/originals/gallery-image-original-4.jpg' %}"><img
-                                        src="{% static 'images/aside-gallery-4-160x160.jpg' %}" alt="" width="160"
-                                        height="160"></a></li>
-                            <li><a class="aside-gallery-item" data-lightgallery="item"
-                                    href="{% static 'images/originals/gallery-image-original-5.jpg' %}"><img
-                                        src="{% static 'images/aside-gallery-5-160x160.jpg' %}" alt="" width="160"
-                                        height="160"></a></li>
-                            <li><a class="aside-gallery-item" data-lightgallery="item"
-                                    href="{% static 'images/originals/gallery-image-original-6.jpg' %}"><img
-                                        src="{% static 'images/aside-gallery-6-160x160.jpg' %}" alt="" width="160"
-                                        height="160"></a></li>
-                        </ul>
-                    </div>
+                    {% get_search %}
+                    {% get_archive %}
+                    {% get_gallery %}
                 </div>
             </div>
         </div>
