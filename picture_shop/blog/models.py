@@ -1,4 +1,21 @@
 from django.db import models
+from django.urls import reverse
+
+
+class Category(models.Model):
+    title = models.CharField(max_length=255, verbose_name='Название')
+    slug = models.SlugField(max_length=255, unique=True, verbose_name='Url')
+
+    class Meta:
+        verbose_name = 'Категорию'
+        verbose_name_plural = 'Категории'
+        ordering = ['title']
+
+    def __str__(self):
+        return self.title
+
+    def get_absolute_url(self):
+        return reverse('category', kwargs={'slug': self.slug})
 
 
 class Post(models.Model):
