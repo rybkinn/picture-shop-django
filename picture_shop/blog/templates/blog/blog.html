@@ -2,7 +2,7 @@
 {% load static %}
 {% load sidebar %}
 
-{% block title %}Блог{% endblock %}
+{% block title %}{{ title }}{% endblock %}
 
 {% block content %}
 <section class="section"
@@ -25,104 +25,35 @@
         <div class="range range-40 range-center range-fix">
             <div class="cell-sm-10 cell-md-8">
                 <div class="range range-30">
+
+                    {% for post in posts %}
                     <div class="cell-sm-6 cell-flex">
                         <article class="post-grid custom-bg-image"
-                            style="background-image: url({% static 'images/grid-blog-1-570x400.jpg' %});">
+                            style="background-image: url({{ post.background_image.url }});">
                             <div class="post-item">
-                                <div class="post-author"><a class="author-media" href="{% url 'single-post' %}"><img
-                                            src="{% static 'images/grid-blog-author-50x50.jpg' %}" alt="" width="50"
-                                            height="50"></a><a class="author-name"
-                                        href="{% url 'single-post' %}">Светлана Мельникова</a></div>
-                            </div>
-                            <div class="post-item">
-                                <div class="content">
-                                    <div class="time"> <time datetime="2018-01-01">Дек. 22, 2018 в 17:07</time>
-                                    </div>
-                                    <h4 class="post-title"><a href="{% url 'single-post' %}">Организация вашей студии:
-                                            советы и рекомендации для начинающих художников</a></h4>
-                                    <div class="post-exeption">
-                                        <p>Одним из наиболее важных аспектов создания идеальной студии является
-                                            возможность найти именно ту, которая вам нужна, за очень короткое
-                                            время...</p>
-                                    </div>
+                                <div class="post-author">
+                                    <a class="author-media" href="#">
+                                        <img src="{% static 'images/grid-blog-author-50x50.jpg' %}" alt="" width="50" </a>
+                                    <a class="author-name" href="#">Светлана Мельникова</a>
                                 </div>
                             </div>
-                        </article>
-                    </div>
-                    <div class="cell-sm-6 cell-flex">
-                        <article class="post-grid custom-bg-image"
-                            style="background-image: url({% static 'images/grid-blog-2-570x400.jpg' %});">
-                            <div class="post-item">
-                                <div class="post-author"><a class="author-media" href="{% url 'single-post' %}"><img
-                                            src="{% static 'images/grid-blog-author-50x50.jpg' %}" alt="" width="50"
-                                            height="50"></a><a class="author-name"
-                                        href="{% url 'single-post' %}">Светлана Мельникова</a></div>
-                            </div>
                             <div class="post-item">
                                 <div class="content">
-                                    <div class="time"> <time datetime="2018-01-01">Дек. 22, 2018 в 17:07</time>
+                                    <div class="time">
+                                        <time>{{ post.post_time }}</time>
                                     </div>
-                                    <h4 class="post-title"><a href="{% url 'single-post' %}">Где искать клиентов</a>
+                                    <h4 class="post-title">
+                                        <a href="{{ post.slug }}">{{ post.title }}</a>
                                     </h4>
                                     <div class="post-exeption">
-                                        <p>Лучшие клиенты - не те, кто покупает ваше произведение искусства, а
-                                            те, кто будет продолжать покупать ваши работы в течение многих лет.
-                                            Но как этого достичь?</p>
+                                        <p>{{ post.description|truncatewords_html:20|safe }}</p>
                                     </div>
                                 </div>
                             </div>
                         </article>
                     </div>
-                    <div class="cell-sm-6 cell-flex">
-                        <article class="post-grid custom-bg-image"
-                            style="background-image: url({% static 'images/grid-blog-3-570x400.jpg' %});">
-                            <div class="post-item">
-                                <div class="post-author"><a class="author-media" href="{% url 'single-post' %}"><img
-                                            src="{% static 'images/grid-blog-author-50x50.jpg' %}" alt="" width="50"
-                                            height="50"></a><a class="author-name"
-                                        href="{% url 'single-post' %}">Светлана Мельникова</a></div>
-                            </div>
-                            <div class="post-item">
-                                <div class="content">
-                                    <div class="time"> <time datetime="2018-01-01">Дек. 22, 2018 в 17:07
-                                            pm</time> </div>
-                                    <h4 class="post-title"><a href="{% url 'single-post' %}">Как превратить ваше
-                                            воображение в искусство: советы и рекомендации для начинающих</a>
-                                    </h4>
-                                    <div class="post-exeption">
-                                        <p>У всех нас есть воображение. Но требуется особый навык, чтобы держать
-                                            образ в мыслях и превращать это воображение в искусство. Талант
-                                            может быть естественным подарком, приобретенным навыком или
-                                            комбинацией того и другого.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </article>
-                    </div>
-                    <div class="cell-sm-6 cell-flex">
-                        <article class="post-grid custom-bg-image"
-                            style="background-image: url({% static 'images/grid-blog-4-570x400.jpg' %});">
-                            <div class="post-item">
-                                <div class="post-author"><a class="author-media" href="{% url 'single-post' %}"><img
-                                            src="{% static 'images/grid-blog-author-50x50.jpg' %}" alt="" width="50"
-                                            height="50"></a><a class="author-name"
-                                        href="{% url 'single-post' %}">Светлана Мельникова</a></div>
-                            </div>
-                            <div class="post-item">
-                                <div class="content">
-                                    <div class="time"> <time datetime="2018-01-01">Дек. 22, 2018 в 17:07</time>
-                                    </div>
-                                    <h4 class="post-title"><a href="{% url 'single-post' %}">Последние тенденции в
-                                            изобразительном искусстве</a></h4>
-                                    <div class="post-exeption">
-                                        <p>Выставка «Artists Helping Artists» была посвящена тенденциям в
-                                            искусстве и тому, что актуально в 2018 году. Я считаю, что тенденции
-                                            не должны влиять на то, что мы создаем. Не стоит менять себя.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </article>
-                    </div>
+                    {% endfor %}
+
                 </div>
                 <div class="post-bottom text-center"> <button
                         class="button button-primary-outline button-icon button-icon-left"><span><span
