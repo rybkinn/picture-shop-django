@@ -14,11 +14,10 @@ class CustomUserAdmin(UserAdmin):
     add_fieldsets = (
         *UserAdmin.add_fieldsets,
         (
-            'Дополнительно',
+            None,
             {
-                'fields': (
-                    'avatar',
-                )
+                'classes': ('wide',),
+                'fields': ('first_name', 'last_name', 'email', 'avatar')
             }
         )
     )
