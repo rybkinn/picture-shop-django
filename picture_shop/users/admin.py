@@ -1,5 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
+from django.utils.safestring import mark_safe
 
 from .models import CustomUser
 
@@ -8,7 +9,8 @@ from .models import CustomUser
 class CustomUserAdmin(UserAdmin):
     model = CustomUser
 
-    list_display = ['username', 'first_name', 'last_name', 'email', 'is_staff', 'is_active', 'avatar']
+    list_display = ['username', 'first_name', 'last_name', 'email', 'is_staff', 'is_active', 'get_short_avatar']
+    readonly_fields = ['get_short_avatar']
 
     # Add user
     add_fieldsets = (
@@ -34,3 +36,11 @@ class CustomUserAdmin(UserAdmin):
             }
         )
     )
+
+    def get_short_avatar(self, obj):
+        if obj.avatar:
+            return mark_safe(f'<img src="{obj.avatar.url}" width="50">')
+        else:
+            return '-'
+
+    get_short_avatar.short_description = 'Аватар'
