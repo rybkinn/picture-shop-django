@@ -11,5 +11,11 @@ class CategoryAdmin(admin.ModelAdmin):
 
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
-    list_display = ('title', 'slug', 'background_image', 'post_time')
+    list_display = ('title', 'slug', 'background_image', 'post_time', 'author')
     prepopulated_fields = {'slug': ('title',)}
+    exclude = ('author',)
+
+    def save_model(self, request, obj, form, change):
+        if not obj.pk:
+            obj.author = request.user
+        super().save_model(request, obj, form, change)
