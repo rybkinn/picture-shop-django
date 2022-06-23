@@ -33,8 +33,14 @@
                             <div class="post-item">
                                 <div class="post-author">
                                     <a class="author-media" href="#">
-                                        <img src="{% static 'images/grid-blog-author-50x50.jpg' %}" alt="" width="50" </a>
-                                    <a class="author-name" href="#">Светлана Мельникова</a>
+                                        {% for user in users %}
+{#                                            {% if user.avatar|lower == '' %}#}
+{#                                                <img src="\media\users\avatar\default_avatar.jpg" alt="" width="50" ></a>#}
+                                            {% if user.username|lower == post.author|lower %}
+                                                <img src="{{ user.avatar.url }}" alt="" width="50" ></a>
+                                            {% endif %}
+                                        {% endfor %}
+                                    <a class="author-name" href="#">{{ post.author }}</a>
                                 </div>
                             </div>
                             <div class="post-item">
