@@ -4226,6 +4226,10 @@ html.desktop[data-x-mode="true"] .post-grid .post-author .author-media+.author-n
 	font-size: 16px;
 }
 
+.post-item .post-title a {
+	white-space: normal;
+}
+
 .post-recent .time {
 	font-size: 14px;
 	color: #9e9ea0;
