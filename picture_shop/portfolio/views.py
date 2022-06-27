@@ -1,9 +1,25 @@
+from django.views.generic import ListView
+
 from django.shortcuts import render
 
+from users.models import CustomUser
+from blog.models import Post
 
-# Create your views here.
-def home(request):
-    return render(request, 'portfolio/index.html')
+
+class PostHome(ListView):
+    model = Post
+    template_name = 'portfolio/index.html'
+    context_object_name = 'posts'
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Главная'
+        context['users'] = CustomUser.objects.all()
+        return context
+
+    def get_queryset(self):
+        post_count = 4
+        return Post.objects.all().order_by('-pk')[:post_count]
 
 
 def about_me(request):
