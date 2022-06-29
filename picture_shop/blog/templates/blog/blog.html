@@ -61,10 +61,62 @@
                     {% endfor %}
 
                 </div>
-                <div class="post-bottom text-center"> <button
-                        class="button button-primary-outline button-icon button-icon-left"><span><span
-                                class="icon mdi mdi-refresh"></span>Больше публикаций</span></button> </div>
+                <div class="post-bottom text-center">
+                    <button id="show_more_posts" class="button button-primary-outline button-icon button-icon-left">
+                        <span>
+                            <span class="icon mdi mdi-refresh"></span>
+                            Больше публикаций
+                        </span>
+                    </button>
+                </div>
             </div>
+
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+            <script type="text/javascript">
+                let posts_left = {{ posts_left }};
+                if (posts_left <= 0){
+                    document.querySelector('.post-bottom.text-center').remove();
+                }
+                posts_left = undefined;
+
+                $('#show_more_posts').click(function(){
+                    $.ajax(
+                    {
+                        type:"GET",
+                        url: "get_posts/",
+                        dataType: "json",
+                        data:{},
+                        success: function(data)
+                        {
+                            if (data){
+                                let _json = JSON.parse(JSON.stringify(data))
+                                let posts_left = _json[0]['total_posts_count']
+                                let json_length = data.length
+                                if (data.length > 1){
+
+                                    console.log('data.length => ' + json_length)
+                                    console.log('post_left => || ' + _json[0]['total_posts_count']);
+
+                                    for (let iter = 0, item = 1; iter < data.length - 1; iter++, item++ ){
+                                        if (posts_left <= 0){
+                                            $('#show_more_posts').remove();
+                                        }
+                                        console.log('item => || ' + item + ' || ' + _json[item]['description']);
+                                        {#$('.section-lg .range-30 ').append(data)#}
+                                    }
+                                }
+                            }
+                            else {
+                                console.log('No data')
+                            }
+                        },
+                        error: function (error) {
+                            console.log(error)
+                    }
+                    })
+                });
+            </script>
+
             <div class="cell-sm-10 cell-md-4">
                 <div class="widget-list">
                     {% get_search %}
