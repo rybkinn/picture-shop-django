@@ -71,7 +71,7 @@
                 </div>
             </div>
 
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+            <script src="{% static 'js/jquery.min.js' %}"></script>
             <script type="text/javascript">
                 let posts_left = {{ posts_left }};
                 if (posts_left <= 0){
@@ -91,18 +91,50 @@
                             if (data){
                                 let _json = JSON.parse(JSON.stringify(data))
                                 let posts_left = _json[0]['total_posts_count']
-                                let json_length = data.length
+                                console.log(data)
+
                                 if (data.length > 1){
 
-                                    console.log('data.length => ' + json_length)
-                                    console.log('post_left => || ' + _json[0]['total_posts_count']);
-
                                     for (let iter = 0, item = 1; iter < data.length - 1; iter++, item++ ){
+
+                                        let background_image = _json[item]['background_image']
+                                        let description = _json[item]['description']
+                                        let post_time = _json[item]['post_time']
+                                        let slug = _json[item]['slug']
+                                        let title = _json[item]['title']
+                                        let author = _json[item]['author']
+                                        let author_avatar = _json[item]['author_avatar']
+
                                         if (posts_left <= 0){
                                             $('#show_more_posts').remove();
                                         }
-                                        console.log('item => || ' + item + ' || ' + _json[item]['description']);
-                                        {#$('.section-lg .range-30 ').append(data)#}
+                                        $('.section-lg .range-30 ').append(`
+                                            <div class="cell-sm-6 cell-flex">
+                                                <article class="post-grid custom-bg-image"
+                                                    style="background-image: url(${background_image});">
+                                                    <div class="post-item">
+                                                        <div class="post-author">
+                                                            <a class="author-media" href="#">
+                                                                <img src="${author_avatar}" alt="" width="50" ></a>
+                                                            <a class="author-name" href="#">${author}</a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="post-item">
+                                                        <div class="content">
+                                                            <div class="time">
+                                                                <time>${post_time}</time>
+                                                            </div>
+                                                            <h4 class="post-title">
+                                                                <a href="${slug}">${title}</a>
+                                                            </h4>
+                                                            <div class="post-exeption">
+                                                                <p>${description}</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </article>
+                                            </div>`
+                                        )
                                     }
                                 }
                             }
