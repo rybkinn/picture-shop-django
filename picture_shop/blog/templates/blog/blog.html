@@ -73,33 +73,25 @@
 
             <script src="{% static 'js/jquery.min.js' %}"></script>
             <script type="text/javascript">
-                let posts_left = {{ posts_left }};
-                if (posts_left <= 0){
-                    document.querySelector('.post-bottom.text-center').remove();
-                }
-                posts_left = undefined;
 
-                $('#show_more_posts').click(function(){
+                $('#show_more_posts').click(function (){
 
-                    let current_pos_scroll = $(window).scrollTop();
-                    let height_block_post = $('.cell-sm-6.cell-flex').height();
-                    let block_margin_top_px = 30;
-                    $('html, body').animate({
-                        scrollTop: current_pos_scroll + height_block_post + block_margin_top_px
-                    }, 1000);
+                    let block_posts = document.querySelector("div.range.range-30");
 
                     $.ajax(
                     {
                         type:"GET",
                         url: "get_posts/",
                         dataType: "json",
-                        data:{},
+                        data:{
+                            count_posts: block_posts.childElementCount
+                        },
                         success: function(data)
                         {
                             if (data){
                                 let _json = JSON.parse(JSON.stringify(data));
-                                let posts_left = _json[0]['total_posts_count'];
-                                console.log(data);
+                                let posts_left = _json[0]['posts_left'];
+                                let count_posts_add = _json[0]['count_posts_add'];
 
                                 if (data.length > 1){
 
@@ -145,13 +137,19 @@
                                         )
                                     }
                                 }
+                                let height_block_post = document.getElementById('show_more_posts');
+                                height_block_post.scrollIntoView({block: "end", behavior: "smooth"})
+
+                                if (posts_left <= count_posts_add){
+                                    document.querySelector('.post-bottom.text-center').remove();
+                                }
                             }
                             else {
                                 console.log('No data');
                             }
                         },
                         error: function (error) {
-                            console.log(error);
+                            console.log('error => ', error);
                     }
                     })
                 });
