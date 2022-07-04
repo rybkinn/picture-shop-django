@@ -1880,6 +1880,84 @@ $document.ready(function () {
 		}
 	}
 
+	/**
+	 * AJAX script: Show more posts in blog page.
+	 */
+	$('#show_more_posts').click(function (){
 
+		let block_posts = document.querySelector("div.range.range-30");
+
+		$.ajax({
+			type:"GET",
+			url: "show_more_posts/",
+			dataType: "json",
+			data:{
+				count_posts: block_posts.childElementCount
+			},
+			success: function(data){
+				if (data){
+					let _json = JSON.parse(JSON.stringify(data));
+					let posts_left = _json[0]['posts_left'];
+					let count_posts_add = _json[0]['count_posts_add'];
+
+					if (data.length > 1){
+
+						for (let iter = 0, item = 1; iter < data.length - 1; iter++, item++ ){
+
+							let background_image = _json[item]['background_image'];
+							let description = _json[item]['description'];
+							let post_time = _json[item]['post_time'];
+							let slug = _json[item]['slug'];
+							let title = _json[item]['title'];
+							let author = _json[item]['author'];
+							let author_avatar = _json[item]['author_avatar'];
+
+							if (posts_left <= 0){
+								$('#show_more_posts').remove();
+							}
+							$('.section-lg .range-30 ').append(`
+								<div class="cell-sm-6 cell-flex">
+								<article class="post-grid custom-bg-image"
+									style="background-image: url(${background_image});">
+									<div class="post-item">
+										<div class="post-author">
+											<a class="author-media" href="#">
+												<img src="${author_avatar}" alt="" width="50" ></a>
+											<a class="author-name" href="#">${author}</a>
+										</div>
+									</div>
+									<div class="post-item">
+										<div class="content">
+											<div class="time">
+												<time>${post_time}</time>
+											</div>
+											<h4 class="post-title">
+												<a href="${slug}">${title}</a>
+											</h4>
+											<div class="post-exeption">
+												<p>${description}</p>
+											</div>
+										</div>
+									</div>
+								</article>
+							</div>`
+							)
+						}
+					}
+					let height_block_post = document.getElementById('show_more_posts');
+					height_block_post.scrollIntoView({block: "end", behavior: "smooth"})
+
+					if (posts_left <= count_posts_add){
+						document.querySelector('.post-bottom.text-center').remove();
+					}
+				}
+				else {
+					console.log('No data');
+				}
+			},
+			error: function (error) {
+				console.log('error => ', error);
+			}
+		})
+	});
 });
-

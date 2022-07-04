@@ -25,10 +25,12 @@ class PostBlog(ListView):
         return Post.objects.all().order_by('-pk')[:self.start_posts_number]
 
     @staticmethod
-    def show_more_posts(request):
+    def show_more_posts(request) -> JsonResponse:
+        """
+        Handling AJAX request on display new posts in Blog page.
+        """
         count_posts_displayed = int(request.GET.get('count_posts', default=0))
         posts_left = Post.objects.count() - count_posts_displayed
-
         sent_posts = Post.objects.all().order_by('-pk')[
                      count_posts_displayed:count_posts_displayed + PostBlog.count_posts_add]
 
@@ -40,11 +42,15 @@ class PostBlog(ListView):
             content['description'] = ' '.join(str(content['description']).split(' ')[:20]) + ' …'
             content['post_time'] = dateformat.format(
                 Post.objects.get(id=content['id']).post_time, settings.DATE_FORMAT + ' г. H:i')
-            del content['author_id']
-            del content['category_id']
 
-        json_data.insert(0, {'posts_left': posts_left,
-                             'count_posts_add': PostBlog.count_posts_add})
+            delete_keys = ('id', 'author_id', 'category_id')
+            for key in delete_keys:
+                content.pop(key, None)
+
+        json_data.insert(0, {
+            'posts_left': posts_left,
+            'count_posts_add': PostBlog.count_posts_add
+        })
 
         return JsonResponse(json_data, safe=False)
 
