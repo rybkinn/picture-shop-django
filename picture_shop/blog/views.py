@@ -19,6 +19,7 @@ class PostBlog(ListView):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Блог'
         context['users'] = CustomUser.objects.all()
+        context['start_posts_number'] = self.start_posts_number
         return context
 
     def get_queryset(self):
@@ -53,6 +54,25 @@ class PostBlog(ListView):
         })
 
         return JsonResponse(json_data, safe=False)
+
+
+class SearchPost(ListView):
+    template_name = 'blog/blog.html'
+    context_object_name = 'posts'
+
+    def dispatch(self, request, *args, **kwargs):
+        print(request.get_full_path().split('/'))
+        print(request.get_full_path())
+        return super().dispatch(request, *args, **kwargs)
+
+    def get_queryset(self):
+        return Post.objects.filter(title__icontains=self.request.GET.get('s'))[:PostBlog.start_posts_number]
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['s'] = f"s={self.request.GET.get('s')}&"
+        context['start_posts_number'] = PostBlog.start_posts_number
+        return context
 
 
 class GetSinglePost(DetailView):

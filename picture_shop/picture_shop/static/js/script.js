@@ -1757,6 +1757,13 @@ $document.ready(function () {
 	/**
 	 * AJAX script: Show more posts in blog page.
 	 */
+	let block_posts = document.querySelector("div.range.range-30");
+	let post_bottom = document.querySelector(".post-bottom")
+
+	if (window.location.pathname === "/blog/" || window.location.pathname === "/blog/search/") {
+		if (block_posts.childElementCount < start_posts_number) {post_bottom.remove()}
+	}
+
 	$('#show_more_posts').click(function (){
 
 		let block_posts = document.querySelector("div.range.range-30");
