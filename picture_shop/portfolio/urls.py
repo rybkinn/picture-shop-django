@@ -1,5 +1,6 @@
-from django.urls import path
+from django.urls import path, re_path
 
+from blog.views import PostBlog
 from .views import *
 
 urlpatterns = [
@@ -10,4 +11,5 @@ urlpatterns = [
     path('services/portrait/', portrait, name='portrait'),
     path('services/street-artist-services/', street_artist_services, name='street-artist-services'),
     path('terms-of-use/', terms_of_use, name='terms-of-use'),
+    re_path(r'^(.*)?/show_more_posts/$', PostBlog.show_more_posts, name='show_more_posts'),
 ]
