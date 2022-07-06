@@ -3,7 +3,7 @@ from django.urls import reverse
 
 
 class Category(models.Model):
-    title = models.CharField(max_length=255, verbose_name='Название')
+    title = models.CharField(max_length=255, unique=True, verbose_name='Название')
     slug = models.SlugField(max_length=255, unique=True, verbose_name='Url')
 
     class Meta:
@@ -19,7 +19,7 @@ class Category(models.Model):
 
 
 class Post(models.Model):
-    title = models.CharField(max_length=150, verbose_name='Название')
+    title = models.CharField(max_length=150, unique=True, verbose_name='Название')
     slug = models.SlugField(max_length=200, unique=True, verbose_name='Url')
     description = models.TextField(blank=True, verbose_name='Описание')
     post_time = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
