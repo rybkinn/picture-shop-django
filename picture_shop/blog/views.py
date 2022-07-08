@@ -5,7 +5,7 @@ from django.views.generic import DetailView, ListView, View
 
 from users.models import CustomUser
 from .models import Post
-from .utils import PostSettings
+from .utils import PostSettings, ValidatePostData
 
 
 class PostBlog(PostSettings, ListView):
@@ -43,14 +43,22 @@ class SearchPost(PostSettings, ListView):
         return context
 
 
-class ShowMorePosts(PostSettings, View):
-    def get(self, request, *args, **kwargs) -> HttpResponseBadRequest | JsonResponse | Http404:
+class ShowMorePosts(ValidatePostData, PostSettings, View):
+    def get(self, request, *args, **kwargs) -> Http404 | HttpResponseBadRequest | JsonResponse:
         """
-        Handling AJAX request on display new posts in Blog page.
+        Handling AJAX request on display new posts.
         """
-        get_count_posts = int(request.GET.get('count_posts'))
+        if issubclass(ShowMorePosts, ValidatePostData):
+            validate_data = self.validate_request(request)
+            if not validate_data['success']:
+                if validate_data['status'] == 404:
+                    raise Http404(validate_data['message'])
+                elif validate_data['status'] == 400:
+                    return HttpResponseBadRequest(validate_data['message'], validate_data['status'])
+            count_posts_displayed = validate_data['result']
+        else:
+            count_posts_displayed = int(request.GET.get('count_posts'))
 
-        count_posts_displayed = get_count_posts
         posts_left = Post.objects.count() - count_posts_displayed
         sent_posts = Post.objects.all().order_by('-pk')[
                      count_posts_displayed:count_posts_displayed + self.count_posts_add]
