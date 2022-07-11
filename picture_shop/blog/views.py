@@ -8,7 +8,7 @@ from .models import Post
 from .utils import PostSettings, ValidatePostData
 
 
-class PostBlog(PostSettings, ListView):
+class BlogPost(PostSettings, ListView):
     model = Post
     template_name = 'blog/blog.html'
     context_object_name = 'posts'
