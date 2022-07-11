@@ -29,6 +29,7 @@ class Post(models.Model):
     author = models.ForeignKey('users.CustomUser', on_delete=models.CASCADE, null=True, verbose_name='Автор')
     category = models.ForeignKey(Category, on_delete=models.PROTECT, default=None,
                                  related_name='posts', verbose_name='Категория')
+    is_archived = models.BooleanField(default=False, verbose_name='В архиве')
 
     class Meta:
         verbose_name = 'Пост'

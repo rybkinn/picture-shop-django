@@ -21,20 +21,16 @@ class BlogPost(PostSettings, ListView):
         return context
 
     def get_queryset(self):
-        return Post.objects.all().order_by('-pk')[:self.start_posts_number]
+        return Post.objects.filter(is_archived=False).order_by('-pk')[:self.start_posts_number]
 
 
 class SearchPost(PostSettings, ListView):
     template_name = 'blog/blog.html'
     context_object_name = 'posts'
 
-    def dispatch(self, request, *args, **kwargs):
-        print(request.get_full_path().split('/'))
-        print(request.get_full_path())
-        return super().dispatch(request, *args, **kwargs)
-
     def get_queryset(self):
-        return Post.objects.filter(title__icontains=self.request.GET.get('s'))[:self.start_posts_number]
+        return Post.objects.filter(title__icontains=self.request.GET.get('s'),
+                                   is_archived=False)[:self.start_posts_number]
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -59,8 +55,8 @@ class ShowMorePosts(ValidatePostData, PostSettings, View):
         else:
             count_posts_displayed = int(request.GET.get('count_posts'))
 
-        posts_left = Post.objects.count() - count_posts_displayed
-        sent_posts = Post.objects.all().order_by('-pk')[
+        posts_left = Post.objects.filter(is_archived=False).count() - count_posts_displayed
+        sent_posts = Post.objects.filter(is_archived=False).order_by('-pk')[
                      count_posts_displayed:count_posts_displayed + self.count_posts_add]
 
         json_data = list(sent_posts.values())
