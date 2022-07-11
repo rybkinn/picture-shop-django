@@ -1787,7 +1787,7 @@ $document.ready(function () {
 
 							let background_image = _json[item]['background_image'];
 							let description = _json[item]['description'];
-							let post_time = _json[item]['post_time'];
+							let creation_time = _json[item]['creation_time'];
 							let slug = _json[item]['slug'];
 							let title = _json[item]['title'];
 							let author = _json[item]['author'];
@@ -1810,7 +1810,7 @@ $document.ready(function () {
 									<div class="post-item">
 										<div class="content">
 											<div class="time">
-												<time>${post_time}</time>
+												<time>${creation_time}</time>
 											</div>
 											<h4 class="post-title">
 												<a href="${slug}">${title}</a>

@@ -22,7 +22,7 @@ class Post(models.Model):
     title = models.CharField(max_length=150, unique=True, verbose_name='Название')
     slug = models.SlugField(max_length=200, unique=True, verbose_name='Url')
     description = models.TextField(blank=True, verbose_name='Описание')
-    post_time = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
+    creation_time = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
     background_image = models.ImageField(upload_to='blog_post_background/%Y/%m/%d/',
                                          default='blog_post_background/default/default_background_post.png',
                                          blank=True, verbose_name='Картинка на фоне')
@@ -34,7 +34,7 @@ class Post(models.Model):
     class Meta:
         verbose_name = 'Пост'
         verbose_name_plural = 'Посты'
-        ordering = ['-post_time']
+        ordering = ['-creation_time']
 
     def __str__(self):
         return self.title

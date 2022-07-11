@@ -21,7 +21,7 @@ class BlogPost(PostSettings, ListView):
         return context
 
     def get_queryset(self):
-        return Post.objects.filter(is_archived=False).order_by('-pk')[:self.start_posts_number]
+        return Post.objects.filter(is_archived=False).order_by('-creation_time')[:self.start_posts_number]
 
 
 class SearchPost(PostSettings, ListView):
@@ -56,7 +56,7 @@ class ShowMorePosts(ValidatePostData, PostSettings, View):
             count_posts_displayed = int(request.GET.get('count_posts'))
 
         posts_left = Post.objects.filter(is_archived=False).count() - count_posts_displayed
-        sent_posts = Post.objects.filter(is_archived=False).order_by('-pk')[
+        sent_posts = Post.objects.filter(is_archived=False).order_by('-creation_time')[
                      count_posts_displayed:count_posts_displayed + self.count_posts_add]
 
         json_data = list(sent_posts.values())
@@ -65,8 +65,8 @@ class ShowMorePosts(ValidatePostData, PostSettings, View):
             content['author_avatar'] = '/media/' + str(CustomUser.objects.get(id=content['author_id']).avatar)
             content['background_image'] = '/media/' + content['background_image']
             content['description'] = ' '.join(str(content['description']).split(' ')[:20]) + ' …'
-            content['post_time'] = dateformat.format(
-                Post.objects.get(id=content['id']).post_time, settings.DATE_FORMAT + ' г. H:i')
+            content['creation_time'] = dateformat.format(
+                Post.objects.get(id=content['id']).creation_time, settings.DATE_FORMAT + ' г. H:i')
 
             delete_keys = ('id', 'author_id', 'category_id')
             for key in delete_keys:
