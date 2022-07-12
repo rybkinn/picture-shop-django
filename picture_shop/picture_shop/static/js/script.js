@@ -1841,4 +1841,11 @@ $document.ready(function () {
 			}
 		})
 	});
+
+	/**
+	* Sidebar blog page: Removal of archive block if there are no elements in it.
+	*/
+	let archive_block = document.querySelector('ul.list-marked.list-2-colums').closest('div')
+	let archive_elements_count = archive_block.querySelector('ul.list-marked.list-2-colums').childElementCount
+	if (archive_elements_count === 0) {archive_block.remove()}
 });
