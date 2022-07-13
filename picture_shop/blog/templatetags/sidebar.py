@@ -1,9 +1,13 @@
 import datetime
 
+from dateutil import relativedelta
 from django import template
-from django.utils import dateformat
+from django.db.models import Count
+from django.db.models.functions import TruncMonth, TruncYear
+from django.utils.timezone import utc
 
 from blog.models import Post
+
 
 register = template.Library()
 
@@ -14,28 +18,23 @@ def get_search():
 
 
 @register.inclusion_tag('blog/widgets/archive.html')
-def get_archive(number_previous_year: int = 1) -> dict:
+def get_archive(previous_years: int = 1):
     """
-    Creates a list of archived post grouped by month and year.
-    :param number_previous_year: indicate how many years ago from the current.
-    :return: list of archived post dates('month year').
+    Returns a block with archives for the specified number of years from the current date.
+    :param previous_years: Specify how many last years of archives to output.
     """
-    archived_posts = Post.objects.filter(is_archived=True).order_by('-creation_time')
-    dates_archive_list = [dateformat.format(post.creation_time, "F Y") for post in archived_posts]
+    start_date = datetime.datetime.now(tz=utc) - relativedelta.relativedelta(years=previous_years)
+    end_date = datetime.datetime.now(tz=utc)
 
-    dates_archive_list[:] = list(dict.fromkeys(dates_archive_list))
-
-    year_now = datetime.datetime.now().year
-    date_archive_list_year_filtered = list()
-
-    for date_archive in dates_archive_list:
-        date_archive_year = int(date_archive.split(' ')[1])
-        if year_now - number_previous_year <= date_archive_year <= year_now:
-            date_archive_list_year_filtered.append(date_archive)
+    archived_posts = Post.objects\
+        .filter(is_archived=True, creation_time__range=[start_date, end_date])\
+        .annotate(month=TruncMonth('creation_time'))\
+        .annotate(year=TruncYear('creation_time'))\
+        .values('month')\
+        .annotate(c=Count('id')).order_by('-month', '-year')
 
     return {
-        'date_archive_list_year_filtered': date_archive_list_year_filtered,
-        'date_archive_list_year_slug': []
+        'archived_posts': archived_posts
     }
 
 

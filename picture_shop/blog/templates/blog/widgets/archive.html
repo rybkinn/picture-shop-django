@@ -2,8 +2,12 @@
     <h4>Архив</h4>
     <div class="divider divider-5"></div>
     <ul class="list-marked list-2-colums">
-        {% for date_archive in date_archive_list_year_filtered %}
-            <li><a href="archive/?month=june&year=2022">{{ date_archive }}</a></li>
+        {% for post in archived_posts %}
+            <li>
+                <a href="archive/?month={{ post.month|date:'N' }}&year={{ post.month|date:'Y' }}">
+                    {{ post.month|date:'F Y' }}
+                </a>
+            </li>
         {% endfor %}
     </ul>
 </div>
