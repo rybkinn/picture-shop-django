@@ -2,7 +2,7 @@
     <h4>Поиск</h4>
     <div class="divider divider-5"></div>
     <form class="rd-search rd-blog-search rd-search-form rd-mailform-inline"
-          action="/blog/search/" method="GET" data-search-live="rd-search-results-live">
+          action="{% url 'search' %}" method="GET" data-search-live="rd-search-results-live">
         <div class="form-wrap">
             <label class="form-label form-label rd-input-label" for="rd-search-form-input">Поиск...</label>
             <input class="form-input" id="rd-search-form-input" type="text" name="s" autocomplete="off">
