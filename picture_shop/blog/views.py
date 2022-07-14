@@ -99,6 +99,26 @@ class AjaxShowMorePosts(ValidatePostData, PostSettings, View):
         return JsonResponse(json_data, safe=False)
 
 
+class ArchivePost(PostSettings, ListView):
+    template_name = 'blog/blog.html'
+    context_object_name = 'posts'
+
+    def get_queryset(self):
+        get_month = self.request.GET.get('month')
+        get_year = self.request.GET.get('year')
+
+        return Post.objects.filter(
+                    is_archived=True,
+                    creation_time__year=get_year,
+                    creation_time__month=get_month
+                )[:self.start_posts_number]
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['start_posts_number'] = self.start_posts_number
+        return context
+
+
 class GetSinglePost(DetailView):
     model = Post
     context_object_name = 'post'

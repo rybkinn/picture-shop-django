@@ -1769,14 +1769,27 @@ $document.ready(function () {
 	$('#show_more_posts').click(function (){
 
 		let block_posts = document.querySelector("div.range.range-30");
+		let date_month = document.querySelector(".list-marked.list-2-colums");
+		// let date_year =
+		console.log(date_month)
+
+		let data_params = {
+				count_posts: block_posts.childElementCount
+			};
+
+		if (window.location.pathname === archive_url) {
+			data_params = {
+				count_posts: block_posts.childElementCount,
+				month: '05',
+				year: '2022'
+			}
+		}
 
 		$.ajax({
 			type:"GET",
 			url: "show_more_posts/",
 			dataType: "json",
-			data:{
-				count_posts: block_posts.childElementCount
-			},
+			data: data_params,
 			success: function(data){
 				if (data){
 					let _json = JSON.parse(JSON.stringify(data));
