@@ -74,7 +74,12 @@
             </div>
 
             <script src="{% static 'js/jquery.min.js' %}"></script>
-            <script>let start_posts_number = {{ start_posts_number }};</script>
+            <script>
+                let start_posts_number = {{ start_posts_number }};
+                let blog_url = '{% url 'blog' %}';
+                let search_url = '{% url 'search' %}';
+                let archive_url = '{% url 'archive' %}';
+            </script>
 
             <div class="cell-sm-10 cell-md-4">
                 <div class="widget-list">

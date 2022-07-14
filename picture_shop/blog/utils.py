@@ -23,7 +23,7 @@ class ValidatePostData(PostSettings):
         else:
             clear_path = path_list
 
-        correct_pages = ('/blog/', '/blog/search/')
+        correct_pages = ('/blog/', '/blog/search/', '/blog/archive/')
         if clear_path not in correct_pages:
             result.update({'success': False, 'status': 404, 'message': "Page not found"})
             return result

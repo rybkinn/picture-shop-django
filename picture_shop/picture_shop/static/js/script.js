@@ -1760,7 +1760,9 @@ $document.ready(function () {
 	let block_posts = document.querySelector("div.range.range-30");
 	let post_bottom = document.querySelector(".post-bottom")
 
-	if (window.location.pathname === "/blog/" || window.location.pathname === "/blog/search/") {
+	if (window.location.pathname === blog_url ||
+		window.location.pathname === search_url ||
+		window.location.pathname === archive_url) {
 		if (block_posts.childElementCount < start_posts_number) {post_bottom.remove()}
 	}
 

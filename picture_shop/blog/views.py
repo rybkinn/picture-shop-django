@@ -1,5 +1,6 @@
 from django.conf import settings
-from django.http import JsonResponse, Http404, HttpResponseBadRequest
+from django.db.models import QuerySet
+from django.http import JsonResponse, Http404, HttpResponseBadRequest, QueryDict
 from django.utils import dateformat
 from django.views.generic import DetailView, ListView, View
 
@@ -39,25 +40,43 @@ class SearchPost(PostSettings, ListView):
         return context
 
 
-class ShowMorePosts(ValidatePostData, PostSettings, View):
+class AjaxShowMorePosts(ValidatePostData, PostSettings, View):
+    def __query_database(self, page: str, get_param: QueryDict) -> tuple[int, QuerySet]:
+        """
+        Depending on the page makes a request to the database.
+        :param page: page relatively /blog/
+        :param get_param: incoming GET parameters.
+        :return: how many posts are left in the database, posts to send.
+        """
+        if page == '' or page == 'search/':
+            count_posts_displayed = int(get_param.get('count_posts'))
+            posts_left = Post.objects.filter(is_archived=False).count() - count_posts_displayed
+            sent_posts = Post.objects.filter(is_archived=False).order_by('-creation_time')[
+                         count_posts_displayed:count_posts_displayed + self.count_posts_add]
+        elif page == 'archive/':
+            count_posts_displayed = int(get_param.get('count_posts'))
+            get_month = get_param.get('month')
+            get_year = get_param.get('year')
+            posts_left = Post.objects.filter(
+                is_archived=True,
+                creation_time__year=get_year,
+                creation_time__month=get_month
+            ).count() - count_posts_displayed
+            sent_posts = Post.objects.filter(
+                is_archived=True,
+                creation_time__year=get_year,
+                creation_time__month=get_month
+            ).order_by('-creation_time')[count_posts_displayed:count_posts_displayed + self.count_posts_add]
+        else:
+            raise ValueError(page)
+
+        return posts_left, sent_posts
+
     def get(self, request, *args, **kwargs) -> Http404 | HttpResponseBadRequest | JsonResponse:
         """
         Handling AJAX request on display new posts.
         """
-        if issubclass(ShowMorePosts, ValidatePostData):
-            validate_data = self.validate_request(request)
-            if not validate_data['success']:
-                if validate_data['status'] == 404:
-                    raise Http404(validate_data['message'])
-                elif validate_data['status'] == 400:
-                    return HttpResponseBadRequest(validate_data['message'], validate_data['status'])
-            count_posts_displayed = validate_data['result']
-        else:
-            count_posts_displayed = int(request.GET.get('count_posts'))
-
-        posts_left = Post.objects.filter(is_archived=False).count() - count_posts_displayed
-        sent_posts = Post.objects.filter(is_archived=False).order_by('-creation_time')[
-                     count_posts_displayed:count_posts_displayed + self.count_posts_add]
+        posts_left, sent_posts = self.__query_database(args[0], request.GET)
 
         json_data = list(sent_posts.values())
         for content in json_data:
