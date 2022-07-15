@@ -4,8 +4,7 @@
     <ul class="list-marked list-2-colums">
         {% for post in archived_posts %}
             <li>
-                <a href="{% url 'archive' %}?month={{ post.month|date:'m' }}&year={{ post.month|date:'Y' }}"
-                   data-month={{ post.month|date:'m' }} data-year={{ post.month|date:'Y' }}>
+                <a href="{% url 'archive' %}?month={{ post.month|date:'m' }}&year={{ post.month|date:'Y' }}">
                     {{ post.month|date:'F Y' }}
                 </a>
             </li>

@@ -1769,10 +1769,7 @@ $document.ready(function () {
 	$('#show_more_posts').click(function (){
 
 		let block_posts = document.querySelector("div.range.range-30");
-		let date_month = document.querySelector(".list-marked.list-2-colums");
-		// let date_year =
-		console.log(date_month)
-
+		let get_params = (new URL(document.location)).searchParams;
 		let data_params = {
 				count_posts: block_posts.childElementCount
 			};
@@ -1780,8 +1777,8 @@ $document.ready(function () {
 		if (window.location.pathname === archive_url) {
 			data_params = {
 				count_posts: block_posts.childElementCount,
-				month: '05',
-				year: '2022'
+				month: get_params.get("month"),
+				year: get_params.get("year")
 			}
 		}
 
