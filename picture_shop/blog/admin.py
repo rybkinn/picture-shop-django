@@ -21,3 +21,9 @@ class PostAdmin(admin.ModelAdmin):
         if not obj.pk:
             obj.author = request.user
         super().save_model(request, obj, form, change)
+
+
+@admin.register(Gallery)
+class GalleryAdmin(admin.ModelAdmin):
+    list_display = ('image', 'thumbnail')
+    exclude = ['thumbnail']
