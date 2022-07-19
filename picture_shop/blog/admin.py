@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django.utils.safestring import mark_safe
 
 from .models import *
 
@@ -25,5 +26,13 @@ class PostAdmin(admin.ModelAdmin):
 
 @admin.register(Gallery)
 class GalleryAdmin(admin.ModelAdmin):
-    list_display = ('image', 'thumbnail')
+    list_display = ('image', 'get_thumbnail')
     exclude = ['thumbnail']
+
+    def get_thumbnail(self, obj):
+        if obj.thumbnail:
+            return mark_safe(f'<img src="{obj.thumbnail.url}" width="50">')
+        else:
+            return '-'
+
+    get_thumbnail.short_description = 'Миниатюра'
