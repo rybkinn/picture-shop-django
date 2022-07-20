@@ -6,7 +6,7 @@ from django.db.models import Count
 from django.db.models.functions import TruncMonth, TruncYear
 from django.utils.timezone import utc
 
-from blog.models import Post
+from blog.models import Post, Gallery
 
 
 register = template.Library()
@@ -40,4 +40,5 @@ def get_archive(previous_years: int = 1):
 
 @register.inclusion_tag('blog/widgets/gallery.html')
 def get_gallery():
-    pass
+    gallery_items = Gallery.objects.all()
+    return {'gallery_items': gallery_items}

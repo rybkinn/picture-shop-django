@@ -1,7 +1,7 @@
 from django.db.models.signals import post_save, post_delete
 from django.dispatch.dispatcher import receiver
 
-from PIL import Image
+from PIL import Image, ImageOps
 
 from .models import *
 
@@ -15,7 +15,7 @@ def create_mini_picture_in_blog_gallery(instance, created, **kwargs):
         img = Image.open(instance.image.path)
         if img.width > 160 or img.height > 160:
             output_size = (160, 160)
-            img.thumbnail(output_size)
+            img = ImageOps.fit(img, output_size, Image.ANTIALIAS)
             length_varchar_field = 100
             file_name = '.'.join(instance.image.name.split('.')[:-1])
             file_type = '.' + instance.image.name.split('.')[-1]
