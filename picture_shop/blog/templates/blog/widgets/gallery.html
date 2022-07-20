@@ -8,7 +8,11 @@
         <li>
             <a class="aside-gallery-item" data-lightgallery="item"
                href="{{ item.image.url }}">
-                <img src="{{ item.thumbnail.url }}" alt="" width="160" height="160">
+                {% if item.alt == None %}
+                    <img src="{{ item.thumbnail.url }}" alt="" width="160" height="160">
+                {% else %}
+                    <img src="{{ item.thumbnail.url }}" alt="{{ item.alt }}" width="160" height="160">
+                {% endif %}
             </a>
         </li>
         {% endfor %}

@@ -26,7 +26,7 @@ class PostAdmin(admin.ModelAdmin):
 
 @admin.register(Gallery)
 class GalleryAdmin(admin.ModelAdmin):
-    list_display = ('image', 'get_thumbnail')
+    list_display = ('alt', 'image', 'get_thumbnail')
     exclude = ['thumbnail']
 
     def get_thumbnail(self, obj):

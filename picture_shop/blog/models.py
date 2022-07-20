@@ -44,6 +44,7 @@ class Post(models.Model):
 
 
 class Gallery(models.Model):
+    alt = models.CharField(max_length=200, null=True, blank=True)
     image = models.ImageField(upload_to='blog_gallery/%Y/%m/%d', verbose_name='Картинка')
     thumbnail = models.ImageField(upload_to='blog_gallery_mini/%Y/%m/%d', null=True, blank=True, verbose_name='Миниатюра')
 
