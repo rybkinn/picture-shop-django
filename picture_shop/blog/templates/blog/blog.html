@@ -34,8 +34,6 @@
                                 <div class="post-author">
                                     <a class="author-media" href="#">
                                         {% for user in users %}
-{#                                            {% if user.avatar|lower == '' %}#}
-{#                                                <img src="\media\users\avatar\default_avatar.jpg" alt="" width="50" ></a>#}
                                             {% if user.username|lower == post.author|lower %}
                                                 <img src="{{ user.avatar.url }}" alt="" width="50" ></a>
                                             {% endif %}
@@ -49,7 +47,7 @@
                                         <time>{{ post.creation_time }}</time>
                                     </div>
                                     <h4 class="post-title">
-                                        <a href="{{ post.slug }}">{{ post.title }}</a>
+                                        <a href="{% url 'single-post' post.slug %}">{{ post.title }}</a>
                                     </h4>
                                     <div class="post-exeption">
                                         <p>{{ post.description|truncatewords_html:20|safe }}</p>
@@ -79,6 +77,7 @@
                 let blog_url = '{% url 'blog' %}';
                 let search_url = '{% url 'search' %}';
                 let archive_url = '{% url 'archive' %}';
+                let post_slug_url = '{% url 'single-post' 'ajax_hoOJmiSf9N' %}';
             </script>
 
             <div class="cell-sm-10 cell-md-4">

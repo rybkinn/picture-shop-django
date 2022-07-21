@@ -1800,7 +1800,7 @@ $document.ready(function () {
 							let background_image = _json[item]['background_image'];
 							let description = _json[item]['description'];
 							let creation_time = _json[item]['creation_time'];
-							let slug = _json[item]['slug'];
+							let slug = post_slug_url.replace('ajax_hoOJmiSf9N', _json[item]['slug']);
 							let title = _json[item]['title'];
 							let author = _json[item]['author'];
 							let author_avatar = _json[item]['author_avatar'];

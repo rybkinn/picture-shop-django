@@ -119,7 +119,7 @@ class ArchivePost(PostSettings, ListView):
         return context
 
 
-class GetSinglePost(DetailView):
+class SinglePost(DetailView):
     model = Post
     context_object_name = 'post'
     template_name = 'blog/single-post.html'
