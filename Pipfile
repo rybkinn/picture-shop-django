@@ -13,6 +13,7 @@ flake8 = "*"
 pillow = "*"
 pytz = "*"
 python-dateutil = "*"
+django-ckeditor = "*"
 
 [dev-packages]
 

@@ -1,17 +1,22 @@
 from django.contrib import admin
 from django.utils.safestring import mark_safe
+from django import forms
+from ckeditor_uploader.widgets import CKEditorUploadingWidget
 
 from .models import *
 
 
-@admin.register(Category)
-class CategoryAdmin(admin.ModelAdmin):
-    list_display = ('title', 'slug')
-    prepopulated_fields = {'slug': ('title',)}
+class PostAdminForm(forms.ModelForm):
+    description = forms.CharField(label="Описание", widget=CKEditorUploadingWidget())
+
+    class Meta:
+        model = Post
+        fields = '__all__'
 
 
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
+    form = PostAdminForm
     list_display = ('title', 'slug', 'background_image', 'creation_time', 'author', 'is_archived')
     prepopulated_fields = {'slug': ('title',)}
     exclude = ('author',)
@@ -22,6 +27,12 @@ class PostAdmin(admin.ModelAdmin):
         if not obj.pk:
             obj.author = request.user
         super().save_model(request, obj, form, change)
+
+
+@admin.register(Category)
+class CategoryAdmin(admin.ModelAdmin):
+    list_display = ('title', 'slug')
+    prepopulated_fields = {'slug': ('title',)}
 
 
 @admin.register(Gallery)

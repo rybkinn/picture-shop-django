@@ -6,6 +6,7 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('portfolio.urls')),
+    path('ckeditor/', include('ckeditor_uploader.urls')),
     path('blog/', include('blog.urls')),
 ]
 handler404 = "picture_shop.views.page_not_found_view"
