@@ -1814,9 +1814,9 @@ $document.ready(function () {
 									style="background-image: url(${background_image});">
 									<div class="post-item">
 										<div class="post-author">
-											<a class="author-media" href="#">
+											<a class="author-media">
 												<img src="${author_avatar}" alt="" width="50" ></a>
-											<a class="author-name" href="#">${author}</a>
+											<a class="author-name">${author}</a>
 										</div>
 									</div>
 									<div class="post-item">

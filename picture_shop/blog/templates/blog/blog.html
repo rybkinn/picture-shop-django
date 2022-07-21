@@ -32,13 +32,13 @@
                             style="background-image: url({{ post.background_image.url }});">
                             <div class="post-item">
                                 <div class="post-author">
-                                    <a class="author-media" href="#">
+                                    <a class="author-media">
                                         {% for user in users %}
                                             {% if user.username|lower == post.author|lower %}
                                                 <img src="{{ user.avatar.url }}" alt="" width="50" ></a>
                                             {% endif %}
                                         {% endfor %}
-                                    <a class="author-name" href="#">{{ post.author }}</a>
+                                    <a class="author-name">{{ post.author }}</a>
                                 </div>
                             </div>
                             <div class="post-item">
