@@ -14,6 +14,7 @@ pillow = "*"
 pytz = "*"
 python-dateutil = "*"
 django-ckeditor = "*"
+django-debug-toolbar = "*"
 
 [dev-packages]
 

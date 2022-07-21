@@ -40,7 +40,8 @@ DJANGO_APPS = [
 
 THIRD_PARTY = [
     'ckeditor',
-    'ckeditor_uploader'
+    'ckeditor_uploader',
+    'debug_toolbar'
 ]
 
 LOCAL_APPS = [
@@ -60,6 +61,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 
 ROOT_URLCONF = 'picture_shop.urls'
@@ -147,6 +149,8 @@ MEDIA_URL = '/media/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'users.CustomUser'
+
+INTERNAL_IPS = ['127.0.0.1']
 
 # ckeditor
 CKEDITOR_UPLOAD_PATH = "uploads/"
