@@ -1757,8 +1757,8 @@ $document.ready(function () {
 	/**
 	 * AJAX script: Show more posts in blog page.
 	 */
-	let block_posts = document.querySelector("div.range.range-30");
-	let post_bottom = document.querySelector(".post-bottom")
+	let block_posts = document.getElementById('posts');
+	let post_bottom = document.getElementById('posts-bottom-button');
 
 	if (window.location.pathname === blog_url ||
 		window.location.pathname === search_url ||
@@ -1768,7 +1768,7 @@ $document.ready(function () {
 
 	$('#show_more_posts').click(function (){
 
-		let block_posts = document.querySelector("div.range.range-30");
+		let block_posts = document.getElementById('posts');
 		let get_params = (new URL(document.location)).searchParams;
 		let data_params = {
 				count_posts: block_posts.childElementCount
@@ -1808,7 +1808,7 @@ $document.ready(function () {
 							if (posts_left <= 0){
 								$('#show_more_posts').remove();
 							}
-							$('.section-lg .range-30 ').append(`
+							$('#posts').append(`
 								<div class="cell-sm-6 cell-flex">
 								<article class="post-grid custom-bg-image"
 									style="background-image: url(${background_image});">
@@ -1841,7 +1841,7 @@ $document.ready(function () {
 					height_block_post.scrollIntoView({block: "end", behavior: "smooth"})
 
 					if (posts_left <= count_posts_add){
-						document.querySelector('.post-bottom.text-center').remove();
+						document.getElementById('posts-bottom-button').remove();
 					}
 				}
 				else {
@@ -1855,16 +1855,16 @@ $document.ready(function () {
 	});
 
 	/**
-	* Sidebar blog page: Removal of archive block if there are no elements in it.
+	* Sidebar blog page: Remove blocks if there are no elements.
 	*/
-	let archive_block = document.querySelector('ul.list-marked.list-2-colums').closest('div')
-	let archive_elements_count = archive_block.querySelector('ul.list-marked.list-2-colums').childElementCount
+
+	// archive
+	let archive_block = document.getElementById('sidebar_archive')
+	let archive_elements_count = archive_block.querySelector('ul').childElementCount
 	if (archive_elements_count === 0) {archive_block.remove()}
 
-	/**
-	* Sidebar blog page: Removal of gallery block if there are no elements in it.
-	*/
-	let gallery_block = document.querySelector('ul.aside-gallery').closest('div')
-	let gallery_elements_count = gallery_block.querySelector('ul.aside-gallery').childElementCount
+	// gallery
+	let gallery_block = document.getElementById('sidebar_gallery')
+	let gallery_elements_count = gallery_block.querySelector('ul').childElementCount
 	if (gallery_elements_count === 0) {gallery_block.remove()}
 });

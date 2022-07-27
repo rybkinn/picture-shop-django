@@ -24,7 +24,7 @@
     <div class="shell shell-wide">
         <div class="range range-40 range-center range-fix">
             <div class="cell-sm-10 cell-md-8">
-                <div class="range range-30">
+                <div id="posts" class="range range-30">
 
                     {% for post in posts %}
                     <div class="cell-sm-6 cell-flex">
@@ -61,7 +61,7 @@
                     {% endfor %}
 
                 </div>
-                <div class="post-bottom text-center">
+                <div id="posts-bottom-button" class="post-bottom text-center">
                     <button id="show_more_posts" class="button button-primary-outline button-icon button-icon-left">
                         <span>
                             <span class="icon mdi mdi-refresh"></span>
