@@ -1,0 +1,9 @@
+<div id='sidebar_category' class="widget-list-item">
+    <h4>Категории</h4>
+    <div class="divider divider-5"></div>
+    <ul class="list-marked">
+        {% for category in category_items %}
+            <li><a href="#">{{ category.title }}</a></li>
+        {% endfor %}
+    </ul>
+</div>

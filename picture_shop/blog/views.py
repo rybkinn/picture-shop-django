@@ -1,3 +1,5 @@
+import re
+
 from django.conf import settings
 from django.db.models import QuerySet
 from django.http import JsonResponse, Http404, HttpResponseBadRequest, QueryDict
@@ -37,6 +39,7 @@ class SearchPost(PostSettings, ListView):
         context = super().get_context_data(**kwargs)
         context['s'] = f"s={self.request.GET.get('s')}&"
         context['start_posts_number'] = self.start_posts_number
+        context['users'] = CustomUser.objects.all()
         return context
 
 
@@ -83,7 +86,8 @@ class AjaxShowMorePosts(ValidatePostData, PostSettings, View):
             content['author'] = CustomUser.objects.get(id=content['author_id']).username
             content['author_avatar'] = '/media/' + str(CustomUser.objects.get(id=content['author_id']).avatar)
             content['background_image'] = '/media/' + content['background_image']
-            content['description'] = ' '.join(str(content['description']).split(' ')[:20]) + ' …'
+            content['description'] = ' '.join(
+                re.sub(r'\<[^>]*\>', '', str(content['description'])).split(' ')[:20]) + ' …'
             content['creation_time'] = dateformat.format(
                 Post.objects.get(id=content['id']).creation_time, settings.DATE_FORMAT + ' г. H:i')
 

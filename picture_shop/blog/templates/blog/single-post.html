@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load sidebar %}
 
 {% block title %}Болг пост{% endblock %}
 
@@ -11,8 +12,8 @@
             <div class="breadcrumb-wrapper">
                 <div class="range range-center range-fix">
                     <div class="cell-sm-10 cell-md-12 cell-lg-10 cell-xl-9">
-                        <p class="date">Декабрь 21, 2018 в 14:05</p>
-                        <h2 class="title"> Организация вашей студии: советы и рекомендации</h2>
+                        <p class="date">{{ post.creation_time }}</p>
+                        <h2 class="title">{{ post.title|title }}</h2>
                         <ol class="breadcrumbs-custom">
                             <li><a href="./">Главная</a></li>
                             <li><a href="classic-blog.html">Блог</a></li>
@@ -31,20 +32,7 @@
             <div class="cell-sm-10 cell-md-8 cell-lg-6 cell-lg-preffix-1 cell-lg-postfix-1">
                 <article class="single-post post-section-wrapper">
                     <div class="post-section">
-                        <p class="post-title-text">Любительские студии рассчитаны на творческий отдых. В них не
-                            учат академическому рисунку и живописи, но можно интересно провести время:
-                            нарисовать незатейливую картину, выпить чаю и пофотографироваться.</p>
-                        <p>Такие студии зарабатывают за счет мастер-классов для людей, которые хотят рисовать,
-                            но не умеют. Клиент платит пару тысяч рублей и в течение пары часов рисует что-то
-                            простое вместе с преподавателем. Если гостю понравилось, он придет еще на несколько
-                            мастер-классов, постепенно ему надоест. Такая студия вынуждена постоянно искать
-                            новых клиентов и придумывать новые форматы развлечений, чтобы не скучали старые.</p>
-                        <img src="{% static 'images/single-post-1-870x490.jpg' %}" alt="" width="870" height="490">
-                        <p>На другом полюсе — мастерские профессиональных художников. Здесь мастера учат
-                            начинающих. Мастер-классы здесь длятся месяцами — пока не напишется картина. Занятия
-                            строго по абонементу или по знакомству, случайных людей нет. Если и есть платное
-                            обучение, то оно стоит десятки тысяч рублей. Эти мастерские дополняют или
-                            конкурируют с художественными училищами.</p>
+                        {{ post.description|safe }}
                         <ul class="list-inline-2">
                             <li>Поделиться публикацией:</li>
                             <li><a class="icon icon-xs icon-hover-gray fa-facebook novi-icon" href="#"></a></li>
@@ -175,126 +163,17 @@
                     </div>
                 </article>
             </div>
+            <script>
+                let blog_post_url = '{% url 'single-post' 't1' %}'.replace('t1', '').slice(0, -1);
+            </script>
             <div class="cell-sm-10 cell-md-4">
                 <div class="widget-list">
-                    <div class="widget-list-item">
-                        <h4>Поиск</h4>
-                        <div class="divider divider-5"></div>
-                        <form class="rd-search rd-blog-search rd-search-form rd-mailform-inline"
-                            action="search-results.html" method="GET" data-search-live="rd-search-results-live">
-                            <div class="form-wrap"><label class="form-label form-label rd-input-label"
-                                    for="rd-search-form-input">Поиск...</label> <input class="form-input"
-                                    id="rd-search-form-input" type="text" name="s" autocomplete="off"></div>
-                            <button class="icon mdi mdi-magnify" type="submit"></button>
-                        </form>
-                    </div>
-                    <div class="widget-list-item">
-                        <h4>Архив</h4>
-                        <div class="divider divider-5"></div>
-                        <ul class="list-marked list-2-colums">
-                            <li><a href="#">Март 2018</a></li>
-                            <li><a href="#">Апрель 2018</a></li>
-                            <li><a href="#">Май 2018</a></li>
-                            <li><a href="#">Июнь 2018</a></li>
-                            <li><a href="#">Июль 2018</a></li>
-                            <li><a href="#">Август 2018</a></li>
-                            <li><a href="#">Сентябрь 2018</a></li>
-                            <li><a href="#">Октябрь 2018</a></li>
-                            <li><a href="#">Ноябрь 2018</a></li>
-                            <li><a href="#">Декабрь 2018</a></li>
-                        </ul>
-                    </div>
-                    <div class="widget-list-item">
-                        <h4>Галерея</h4>
-                        <div class="divider divider-5"></div>
-                        <ul class="aside-gallery" data-lightgallery="group">
-                            <li><a class="aside-gallery-item" data-lightgallery="item"
-                                    href="{% static 'images/originals/gallery-image-original-1.jpg' %}"><img
-                                        src="{% static 'images/aside-gallery-1-160x160.jpg' %}" alt="" width="160"
-                                        height="160"></a></li>
-                            <li><a class="aside-gallery-item" data-lightgallery="item"
-                                    href="{% static 'images/originals/gallery-image-original-2.jpg' %}"><img
-                                        src="{% static 'images/aside-gallery-2-160x160.jpg' %}" alt="" width="160"
-                                        height="160"></a></li>
-                            <li><a class="aside-gallery-item" data-lightgallery="item"
-                                    href="{% static 'images/originals/gallery-image-original-3.jpg' %}"><img
-                                        src="{% static 'images/aside-gallery-3-160x160.jpg' %}" alt="" width="160"
-                                        height="160"></a></li>
-                            <li><a class="aside-gallery-item" data-lightgallery="item"
-                                    href="{% static 'images/originals/gallery-image-original-4.jpg' %}"><img
-                                        src="{% static 'images/aside-gallery-4-160x160.jpg' %}" alt="" width="160"
-                                        height="160"></a></li>
-                            <li><a class="aside-gallery-item" data-lightgallery="item"
-                                    href="{% static 'images/originals/gallery-image-original-5.jpg' %}"><img
-                                        src="{% static 'images/aside-gallery-5-160x160.jpg' %}" alt="" width="160"
-                                        height="160"></a></li>
-                            <li><a class="aside-gallery-item" data-lightgallery="item"
-                                    href="{% static 'images/originals/gallery-image-original-6.jpg' %}"><img
-                                        src="{% static 'images/aside-gallery-6-160x160.jpg' %}" alt="" width="160"
-                                        height="160"></a></li>
-                        </ul>
-                    </div>
-                    <div class="widget-list-item">
-                        <h4>Категории</h4>
-                        <div class="divider divider-5"></div>
-                        <ul class="list-marked">
-                            <li><a href="#">Портрет</a></li>
-                            <li><a href="#">Пейзаж</a></li>
-                            <li><a href="#">Натюрморт</a></li>
-                            <li><a href="#">Урбан</a></li>
-                            <li><a href="#">Уличный художник</a></li>
-                        </ul>
-                    </div>
-                    <div class="widget-list-item post-recent-wrapper">
-                        <h4>Недавние посты</h4>
-                        <div class="divider divider-5"></div>
-                        <article class="post-recent">
-                            <div class="post-media"><a href="single-post.html"><img
-                                        src="{% static 'images/recent-post-1-160x100.jpg' %}" alt="" width="160"
-                                        height="100"></a></div>
-                            <div class="caption">
-                                <h5 class="post-title"><a class="heading-link"
-                                        href="single-post.html">Организация вашей студии: советы и
-                                        рекомендации</a></h5>
-                                <div class="time"> <time datetime="2018-01-01">Дек. 19, 2018 в 17:31</time>
-                                </div>
-                            </div>
-                        </article>
-                        <article class="post-recent">
-                            <div class="post-media"><a href="single-post.html"><img
-                                        src="{% static 'images/recent-post-2-160x100.jpg' %}" alt="" width="160"
-                                        height="100"></a></div>
-                            <div class="caption">
-                                <h5 class="post-title"><a class="heading-link" href="single-post.html">Где
-                                        искать клиентов: новые подходы сотрудничества</a></h5>
-                                <div class="time"> <time datetime="2018-01-01">Дек. 19, 2018 в 17:31</time>
-                                </div>
-                            </div>
-                        </article>
-                        <article class="post-recent">
-                            <div class="post-media"><a href="single-post.html"><img
-                                        src="{% static 'images/recent-post-3-160x100.jpg' %}" alt="" width="160"
-                                        height="100"></a></div>
-                            <div class="caption">
-                                <h5 class="post-title"><a class="heading-link" href="single-post.html">Последние
-                                        тенденции в изобразительном искусстве</a></h5>
-                                <div class="time"> <time datetime="2018-01-01">Дек. 19, 2018 в 17:31</time>
-                                </div>
-                            </div>
-                        </article>
-                    </div>
-                    <div class="widget-list-item">
-                        <h4>Обо мне</h4>
-                        <div class="divider divider-5"></div>
-                        <p>Меня зовут Саманта Морган, и я рисую с юных лет. Нахожу вдохновение в инновационных
-                            стилях современного и городского искусства, таких как граффити и иллюстрации.&nbsp;Я
-                            твердо верю, что искусство - это глобальная форма общения. Оно обучает, заставляет
-                            двигаться вперед, доставляет удовольствие и вдохновляет. Искусство может влиять на
-                            эмоции, а человек - на других словами или действиями. Помимо живописи, я также
-                            делюсь своими навыками и знаниями с начинающими художниками на своих курсах
-                            живописи.</p>
-                        <p><a href="about-me.html">Читать дальше...</a></p>
-                    </div>
+                    {% get_search %}
+                    {% get_archive previous_years=3 %}
+                    {% get_gallery %}
+                    {% get_category %}
+                    {% get_latest_posts %}
+                    {% get_about_me %}
                 </div>
             </div>
         </div>

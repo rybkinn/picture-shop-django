@@ -6,7 +6,7 @@ from django.db.models import Count
 from django.db.models.functions import TruncMonth, TruncYear
 from django.utils.timezone import utc
 
-from blog.models import Post, Gallery
+from blog.models import Post, Gallery, Category
 
 
 register = template.Library()
@@ -42,3 +42,20 @@ def get_archive(previous_years: int = 1):
 def get_gallery():
     gallery_items = Gallery.objects.all()
     return {'gallery_items': gallery_items}
+
+
+@register.inclusion_tag('blog/widgets/category.html')
+def get_category():
+    category_items = Category.objects.all()
+    return {'category_items': category_items}
+
+
+@register.inclusion_tag('blog/widgets/latest_posts.html')
+def get_latest_posts():
+    latest_posts = Post.objects.filter(is_archived=False).order_by('-creation_time')[:3]
+    return {'latest_posts': latest_posts}
+
+
+@register.inclusion_tag('blog/widgets/about_me.html')
+def get_about_me():
+    pass

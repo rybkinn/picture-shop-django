@@ -1,0 +1,25 @@
+{% load static %}
+
+<div id="sidebar_latest_posts" class="widget-list-item post-recent-wrapper">
+    <h4>Недавние посты</h4>
+    <div class="divider divider-5"></div>
+
+    {% for latest_post in latest_posts %}
+        <article class="post-recent">
+            <div class="post-media">
+                <a href="{% url 'single-post' slug=latest_post.slug %}">
+                    <img src="{{ latest_post.background_image.url }}" alt="" width="160" height="100">
+                </a>
+            </div>
+            <div class="caption">
+                <h5 class="post-title">
+                    <a class="heading-link" href="{% url 'single-post' slug=latest_post.slug %}">{{ latest_post.title }}</a>
+                </h5>
+                <div class="time">
+                    <time datetime="2018-01-01">{{ latest_post.creation_time }}</time>
+                </div>
+            </div>
+        </article>
+    {% endfor %}
+
+</div>
