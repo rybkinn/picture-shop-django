@@ -1776,7 +1776,12 @@ $document.ready(function () {
 				count_posts: block_posts.childElementCount
 			};
 
-		if (window.location.pathname === archive_url) {
+		if (window.location.pathname === search_url) {
+			data_params = {
+				count_posts: block_posts.childElementCount,
+				search_request: get_params.get("s"),
+			}
+		} else if (window.location.pathname === archive_url) {
 			data_params = {
 				count_posts: block_posts.childElementCount,
 				month: get_params.get("month"),

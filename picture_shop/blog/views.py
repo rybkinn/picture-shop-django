@@ -44,42 +44,20 @@ class SearchPost(PostSettings, ListView):
 
 
 class AjaxShowMorePosts(ValidatePostData, PostSettings, View):
-    def __query_database(self, page: str, get_param: QueryDict) -> tuple[int, QuerySet]:
-        """
-        Depending on the page makes a request to the database.
-        :param page: page relatively /blog/
-        :param get_param: incoming GET parameters.
-        :return: how many posts are left in the database, posts to send.
-        """
-        if page == '' or page == 'search/':
-            count_posts_displayed = int(get_param.get('count_posts'))
-            posts_left = Post.objects.filter(is_archived=False).count() - count_posts_displayed
-            sent_posts = Post.objects.filter(is_archived=False).order_by('-creation_time')[
-                         count_posts_displayed:count_posts_displayed + self.count_posts_add]
-        elif page == 'archive/':
-            count_posts_displayed = int(get_param.get('count_posts'))
-            get_month = get_param.get('month')
-            get_year = get_param.get('year')
-            posts_left = Post.objects.filter(
-                is_archived=True,
-                creation_time__year=get_year,
-                creation_time__month=get_month
-            ).count() - count_posts_displayed
-            sent_posts = Post.objects.filter(
-                is_archived=True,
-                creation_time__year=get_year,
-                creation_time__month=get_month
-            ).order_by('-creation_time')[count_posts_displayed:count_posts_displayed + self.count_posts_add]
-        else:
-            raise ValueError(page)
-
-        return posts_left, sent_posts
 
     def get(self, request, *args, **kwargs) -> Http404 | HttpResponseBadRequest | JsonResponse:
         """
         Handling AJAX request on display new posts.
         """
-        posts_left, sent_posts = self.__query_database(args[0], request.GET)
+        match kwargs['ajax_page']:
+            case 'blog_main_page':
+                posts_left, sent_posts = self.__get_posts_blog_main_page(request.GET)
+            case 'blog_search_page':
+                posts_left, sent_posts = self.__get_posts_blog_search_page(request.GET)
+            case 'blog_archive_page':
+                posts_left, sent_posts = self.__get_posts_blog_archive_page(request.GET)
+            case _:
+                raise ValueError(kwargs['ajax_page'])
 
         json_data = list(sent_posts.values())
         for content in json_data:
@@ -101,6 +79,54 @@ class AjaxShowMorePosts(ValidatePostData, PostSettings, View):
         })
 
         return JsonResponse(json_data, safe=False)
+
+    def __get_posts_blog_main_page(self, get_param: QueryDict) -> tuple[int, QuerySet]:
+        """
+        Requesting more posts for a blog page from the database.
+        :param get_param: incoming GET parameters.
+        :return: how many posts are left in the database, posts to send.
+        """
+        count_posts_displayed = int(get_param.get('count_posts'))
+        posts_left = Post.objects.filter(is_archived=False).count() - count_posts_displayed
+        sent_posts = Post.objects.filter(is_archived=False).order_by('-creation_time')[
+                     count_posts_displayed:count_posts_displayed + self.count_posts_add]
+        return posts_left, sent_posts
+
+    def __get_posts_blog_search_page(self, get_param: QueryDict) -> tuple[int, QuerySet]:
+        """
+        Requesting more posts for the blog search page from the database.
+        :param get_param: incoming GET parameters.
+        :return: how many posts are left in the database, posts to send.
+        """
+        count_posts_displayed = int(get_param.get('count_posts'))
+        search_request = str(get_param.get('search_request'))
+        posts_left = Post.objects \
+                         .filter(title__icontains=search_request, is_archived=False).count() - count_posts_displayed
+        sent_posts = Post.objects \
+                         .filter(title__icontains=search_request, is_archived=False) \
+                         .order_by('-creation_time')[count_posts_displayed:count_posts_displayed + self.count_posts_add]
+        return posts_left, sent_posts
+
+    def __get_posts_blog_archive_page(self, get_param: QueryDict) -> tuple[int, QuerySet]:
+        """
+        Requesting more posts for the blog archives page from the database.
+        :param get_param: incoming GET parameters.
+        :return: how many posts are left in the database, posts to send.
+        """
+        count_posts_displayed = int(get_param.get('count_posts'))
+        get_month = get_param.get('month')
+        get_year = get_param.get('year')
+        posts_left = Post.objects.filter(
+            is_archived=True,
+            creation_time__year=get_year,
+            creation_time__month=get_month
+        ).count() - count_posts_displayed
+        sent_posts = Post.objects.filter(
+            is_archived=True,
+            creation_time__year=get_year,
+            creation_time__month=get_month
+        ).order_by('-creation_time')[count_posts_displayed:count_posts_displayed + self.count_posts_add]
+        return posts_left, sent_posts
 
 
 class ArchivePost(PostSettings, ListView):
