@@ -1,0 +1,90 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html class="wide wow-animation" lang="en" data-preview="404.png">
+
+<head>
+    <!-- Site Title-->
+    <title>{% block error_title %}{% endblock %}</title>
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport"
+          content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <link rel="icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
+    <!-- Stylesheets-->
+    <link rel="stylesheet" type="text/css"
+          href="https://fonts.googleapis.com/css?family=Montserrat:400,700%7CMartel:400,700,900">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/novi.css' %}">
+    <!-- [if lt IE 10]>
+    <div style="background: #212121; padding: 10px 0; box-shadow: 3px 3px 5px 0 rgba(0,0,0,.3); clear: both; text-align:center; position: relative; z-index:1;">
+        <a href="https://windows.microsoft.com/en-US/internet-explorer/">
+            <img src="{% static 'images/ie8-panel/warning_bar_0000_us.jpg' %}" border="0" height="42" width="820"
+                alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today.">
+        </a>
+    </div>
+    <script src="{% static 'js/html5shiv.min.js' %}"></script>
+    <![endif] -->
+</head>
+
+<body>
+<!-- Page preloader-->
+<div class="page-loader">
+    <div>
+        <div class="page-loader-body">
+            <div class="cssload-loader">
+                <div class="cssload-inner cssload-one"></div>
+                <div class="cssload-inner cssload-two"></div>
+                <div class="cssload-inner cssload-three"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Page-->
+<div class="page">
+    <section class="section one-screen-page bg-construct-image-1 context-dark bg-dark-overlay custom-bg-image novi-background"
+            data-preset="{title:404 Page, category:secondary, id:404-page}">
+        <div class="one-screen-page-inner">
+            <!-- Page Header-->
+            <div class="page-header">
+                <div class="rd-navbar-brand brand">
+                    <a class="brand-logo" href="{% url 'home' %}">
+                        <img src="{% static 'images/brand-big-248x36.png' %}" alt="" width="248" height="36">
+                    </a>
+                </div>
+            </div>
+            <!-- Page Content-->
+            <div class="page-content">
+                <div class="shell">
+                    <div class="range range-xs-center range-fix">
+                        <div class="cell-sm-10 cell-lg-9">
+                            <p class="text-extra-large page-title">{% block error_type %}{% endblock %}</p>
+                            <h3 class="page-subtitle">{% block error_subtitle %}{% endblock %}</h3>
+                            <p class="page-description">{% block error_description %}{% endblock %}</p>
+                            <a class="button button-white-outline" href="{% url 'home' %}">
+                                <span>Вернуться на Главную</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Page Footer-->
+            <div class="page-footer text-center">
+                <p class="copyright small">©
+                    <span class="copyright-year"> 2022</span> Все права защищены.
+                    <a class="link" href="{% url 'terms-of-use' %}"> Политика конфиденциальности</a>
+                </p>
+            </div>
+        </div>
+    </section>
+</div>
+<!-- Global Mailform Output-->
+<div class="snackbars" id="form-output-global"></div>
+<!-- Javascript-->
+<script src="{% static 'js/core.min.js' %}"></script>
+<script src="{% static 'js/script.js' %}"></script>
+</body>
+
+</html>
