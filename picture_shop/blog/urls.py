@@ -10,4 +10,6 @@ urlpatterns = [
     path('search/show_more_posts/', AjaxShowMorePosts.as_view(), {'ajax_page': 'blog_search_page'}),
     path('archive/', ArchivePost.as_view(), name='archive'),
     path('archive/show_more_posts/', AjaxShowMorePosts.as_view(), {'ajax_page': 'blog_archive_page'}),
+    path('category/<slug:slug>/', CategoryPost.as_view(), name='category'),
+    path('category/<slug:slug>/show_more_posts/', AjaxShowMorePosts.as_view(), {'ajax_page': 'category_page'}),
 ]

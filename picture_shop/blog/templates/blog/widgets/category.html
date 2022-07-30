@@ -3,7 +3,7 @@
     <div class="divider divider-5"></div>
     <ul class="list-marked">
         {% for category in category_items %}
-            <li><a href="#">{{ category.title }}</a></li>
+            <li><a href="{% url 'category' slug=category.slug %}">{{ category.title }}</a></li>
         {% endfor %}
     </ul>
 </div>

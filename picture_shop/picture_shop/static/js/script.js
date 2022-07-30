@@ -1763,7 +1763,8 @@ $document.ready(function () {
 	if(typeof blog_url !== "undefined") {
 		if (window.location.pathname === blog_url ||
 			window.location.pathname === search_url ||
-			window.location.pathname === archive_url) {
+			window.location.pathname === archive_url ||
+			is_category_page) {
 			if (block_posts.childElementCount < start_posts_number) {post_bottom.remove()}
 		}
 	}

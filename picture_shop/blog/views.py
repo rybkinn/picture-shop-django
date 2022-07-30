@@ -43,7 +43,7 @@ class SearchPost(PostSettings, ListView):
         return context
 
 
-class AjaxShowMorePosts(ValidatePostData, PostSettings, View):
+class AjaxShowMorePosts(PostSettings, View):
 
     def get(self, request, *args, **kwargs) -> Http404 | HttpResponseBadRequest | JsonResponse:
         """
@@ -56,6 +56,8 @@ class AjaxShowMorePosts(ValidatePostData, PostSettings, View):
                 posts_left, sent_posts = self.__get_posts_blog_search_page(request.GET)
             case 'blog_archive_page':
                 posts_left, sent_posts = self.__get_posts_blog_archive_page(request.GET)
+            case 'category_page':
+                posts_left, sent_posts = self.__get_posts_category_page(request.GET)
             case _:
                 raise ValueError(kwargs['ajax_page'])
 
@@ -128,6 +130,20 @@ class AjaxShowMorePosts(ValidatePostData, PostSettings, View):
         ).order_by('-creation_time')[count_posts_displayed:count_posts_displayed + self.count_posts_add]
         return posts_left, sent_posts
 
+    def __get_posts_category_page(self, get_param: QueryDict) -> tuple[int, QuerySet]:
+        """
+        Requesting more posts for the blog category page from the database.
+        :param get_param: incoming GET parameters.
+        :return: how many posts are left in the database, posts to send.
+        """
+        count_posts_displayed = int(get_param.get('count_posts'))
+        posts_left = Post.objects.filter(
+            category__slug=self.kwargs['slug'], is_archived=False).count() - count_posts_displayed
+        sent_posts = Post.objects.filter(
+            category__slug=self.kwargs['slug'], is_archived=False).order_by('-creation_time')[
+                     count_posts_displayed:count_posts_displayed + self.count_posts_add]
+        return posts_left, sent_posts
+
 
 class ArchivePost(PostSettings, ListView):
     template_name = 'blog/blog.html'
@@ -153,3 +169,21 @@ class SinglePost(DetailView):
     model = Post
     context_object_name = 'post'
     template_name = 'blog/single-post.html'
+
+
+class CategoryPost(PostSettings, ListView):
+    model = Post
+    context_object_name = 'posts'
+    template_name = 'blog/blog.html'
+
+    def get_queryset(self):
+        return Post.objects.filter(
+            category__slug=self.kwargs['slug'],
+            is_archived=False
+        ).order_by('-creation_time')[:self.start_posts_number]
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['start_posts_number'] = self.start_posts_number
+        context['category_slug'] = self.kwargs['slug']
+        return context
