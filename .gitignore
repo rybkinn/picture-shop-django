@@ -107,4 +107,6 @@ venv_psd_win/
 
 # mypy
 .mypy_cache/
-/picture_shop/static/
+
+# Django media files
+/picture_shop/media/
