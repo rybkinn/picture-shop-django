@@ -28,8 +28,13 @@
 
                     {% for post in posts %}
                     <div class="cell-sm-6 cell-flex">
-                        <article class="post-grid custom-bg-image"
-                            style="background-image: url({{ post.background_image.url }});">
+                        {% if post.background_image %}
+                            <article class="post-grid custom-bg-image"
+                                     style="background-image: url({{ post.background_image.url }});">
+                        {% else %}
+                            <article class="post-grid custom-bg-image"
+                                     style="background-image: url({% static 'blog/images/default_background_post.png' %});">
+                        {% endif %}
                             <div class="post-item">
                                 <div class="post-author">
                                     <a class="author-media">
@@ -79,11 +84,13 @@
                 let archive_url = '{% url 'archive' %}';
                 let is_category_page = Boolean('{{ category_slug }}');
                 let post_slug_url = '{% url 'single-post' 'ajax_hoOJmiSf9N' %}';
+                let background_post_default_url = '{% static 'blog/images/default_background_post.png' %}';
             </script>
 
             <div class="cell-sm-10 cell-md-4">
                 <div class="widget-list">
                     {% get_search %}
+                    {% get_category %}
                     {% get_archive previous_years=3 %}
                     {% get_gallery %}
                 </div>

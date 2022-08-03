@@ -8,7 +8,11 @@
         <article class="post-recent">
             <div class="post-media">
                 <a href="{% url 'single-post' slug=latest_post.slug %}">
-                    <img src="{{ latest_post.background_image.url }}" alt="" width="160" height="100">
+                    {% if latest_post.background_image %}
+                        <img src="{{ latest_post.background_image.url }}" alt="" width="160" height="100">
+                    {% else %}
+                        <img src="{% static 'blog/images/default_background_post.png' %}" alt="" width="160" height="100">
+                    {% endif %}
                 </a>
             </div>
             <div class="caption">

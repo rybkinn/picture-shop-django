@@ -24,9 +24,9 @@ class Post(models.Model):
     description = models.TextField(blank=True, verbose_name='Описание')
     creation_time = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
     background_image = models.ImageField(upload_to='blog_post_background/%Y/%m/%d/',
-                                         default='blog_post_background/default/default_background_post.png',
                                          blank=True, verbose_name='Картинка на фоне')
-    author = models.ForeignKey('users.CustomUser', on_delete=models.CASCADE, null=True, verbose_name='Автор')
+    author = models.ForeignKey('users.CustomUser', on_delete=models.CASCADE, null=True,
+                               verbose_name='Автор')
     category = models.ForeignKey(Category, on_delete=models.PROTECT, default=None,
                                  related_name='posts', verbose_name='Категория')
     is_archived = models.BooleanField(default=False, verbose_name='В архиве')
@@ -46,7 +46,8 @@ class Post(models.Model):
 class Gallery(models.Model):
     alt = models.CharField(max_length=200, null=True, blank=True)
     image = models.ImageField(upload_to='blog_gallery/%Y/%m/%d', verbose_name='Картинка')
-    thumbnail = models.ImageField(upload_to='blog_gallery_mini/%Y/%m/%d', null=True, blank=True, verbose_name='Миниатюра')
+    thumbnail = models.ImageField(upload_to='blog_gallery_mini/%Y/%m/%d', null=True, blank=True,
+                                  verbose_name='Миниатюра')
 
     class Meta:
         verbose_name = 'Картинку'

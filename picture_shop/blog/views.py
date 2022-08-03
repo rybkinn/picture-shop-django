@@ -8,7 +8,7 @@ from django.views.generic import DetailView, ListView, View
 
 from users.models import CustomUser
 from .models import Post
-from .utils import PostSettings, ValidatePostData
+from .utils import PostSettings
 
 
 class BlogPost(PostSettings, ListView):
@@ -65,7 +65,7 @@ class AjaxShowMorePosts(PostSettings, View):
         for content in json_data:
             content['author'] = CustomUser.objects.get(id=content['author_id']).username
             content['author_avatar'] = '/media/' + str(CustomUser.objects.get(id=content['author_id']).avatar)
-            content['background_image'] = '/media/' + content['background_image']
+            content['background_image'] = content['background_image']
             content['description'] = ' '.join(
                 re.sub(r'\<[^>]*\>', '', str(content['description'])).split(' ')[:20]) + ' …'
             content['creation_time'] = dateformat.format(

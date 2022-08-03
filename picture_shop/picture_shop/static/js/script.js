@@ -1790,6 +1790,14 @@ $document.ready(function () {
 			}
 		}
 
+		function checkBackgroundImage(background_image) {
+			if (Boolean(background_image)) {
+				return '/media/' + background_image;
+			} else {
+				return background_post_default_url;
+			}
+		}
+
 		$.ajax({
 			type:"GET",
 			url: "show_more_posts/",
@@ -1805,7 +1813,7 @@ $document.ready(function () {
 
 						for (let iter = 0, item = 1; iter < data.length - 1; iter++, item++ ){
 
-							let background_image = _json[item]['background_image'];
+							let background_image = checkBackgroundImage(_json[item]['background_image']);
 							let description = _json[item]['description'];
 							let creation_time = _json[item]['creation_time'];
 							let slug = post_slug_url.replace('ajax_hoOJmiSf9N', _json[item]['slug']);
