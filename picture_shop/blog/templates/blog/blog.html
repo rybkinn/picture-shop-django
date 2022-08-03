@@ -40,9 +40,14 @@
                                     <a class="author-media">
                                         {% for user in users %}
                                             {% if user.username|lower == post.author|lower %}
-                                                <img src="{{ user.avatar.url }}" alt="" width="50" ></a>
+                                                {% if user.avatar %}
+                                                    <img src="{{ user.avatar.url }}" alt="" width="50" >
+                                                {% else %}
+                                                    <img src="{% static 'users/images/default_avatar.jpg' %}" alt="" width="50" >
+                                                {% endif %}
                                             {% endif %}
                                         {% endfor %}
+                                    </a>
                                     <a class="author-name">{{ post.author }}</a>
                                 </div>
                             </div>
@@ -85,6 +90,8 @@
                 let is_category_page = Boolean('{{ category_slug }}');
                 let post_slug_url = '{% url 'single-post' 'ajax_hoOJmiSf9N' %}';
                 let background_post_default_url = '{% static 'blog/images/default_background_post.png' %}';
+                let user_avatar_default_url = '{% static 'users/images/default_avatar.jpg' %}';
+                let media_prefix = '{% get_media_prefix %}';
             </script>
 
             <div class="cell-sm-10 cell-md-4">

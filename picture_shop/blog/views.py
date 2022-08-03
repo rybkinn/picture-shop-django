@@ -64,7 +64,7 @@ class AjaxShowMorePosts(PostSettings, View):
         json_data = list(sent_posts.values())
         for content in json_data:
             content['author'] = CustomUser.objects.get(id=content['author_id']).username
-            content['author_avatar'] = '/media/' + str(CustomUser.objects.get(id=content['author_id']).avatar)
+            content['author_avatar'] = str(CustomUser.objects.get(id=content['author_id']).avatar)
             content['background_image'] = content['background_image']
             content['description'] = ' '.join(
                 re.sub(r'\<[^>]*\>', '', str(content['description'])).split(' ')[:20]) + ' …'
@@ -162,6 +162,7 @@ class ArchivePost(PostSettings, ListView):
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
         context['start_posts_number'] = self.start_posts_number
+        context['users'] = CustomUser.objects.all()
         return context
 
 
@@ -186,4 +187,5 @@ class CategoryPost(PostSettings, ListView):
         context = super().get_context_data(**kwargs)
         context['start_posts_number'] = self.start_posts_number
         context['category_slug'] = self.kwargs['slug']
+        context['users'] = CustomUser.objects.all()
         return context

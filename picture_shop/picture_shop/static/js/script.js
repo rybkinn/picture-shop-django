@@ -1790,11 +1790,19 @@ $document.ready(function () {
 			}
 		}
 
-		function checkBackgroundImage(background_image) {
-			if (Boolean(background_image)) {
-				return '/media/' + background_image;
+		function checkPostBackgroundImage(background_image) {
+			if (background_image) {
+				return media_prefix + background_image;
 			} else {
 				return background_post_default_url;
+			}
+		}
+
+		function checkAuthorAvatar(author_avatar) {
+			if (author_avatar) {
+				return media_prefix + author_avatar;
+			} else {
+				return user_avatar_default_url;
 			}
 		}
 
@@ -1813,13 +1821,13 @@ $document.ready(function () {
 
 						for (let iter = 0, item = 1; iter < data.length - 1; iter++, item++ ){
 
-							let background_image = checkBackgroundImage(_json[item]['background_image']);
+							let background_image = checkPostBackgroundImage(_json[item]['background_image']);
 							let description = _json[item]['description'];
 							let creation_time = _json[item]['creation_time'];
 							let slug = post_slug_url.replace('ajax_hoOJmiSf9N', _json[item]['slug']);
 							let title = _json[item]['title'];
 							let author = _json[item]['author'];
-							let author_avatar = _json[item]['author_avatar'];
+							let author_avatar = checkAuthorAvatar(_json[item]['author_avatar']);
 
 							if (posts_left <= 0){
 								$('#show_more_posts').remove();

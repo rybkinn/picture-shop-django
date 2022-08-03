@@ -43,9 +43,17 @@
                             <li>Поделиться публикацией:</li>
                             <li>
                                 <script type="text/javascript">
+                                  function checkPostBackgroundImage(background_image) {
+                                      if (background_image) {
+                                          return '{% get_media_prefix %}{{ post.background_image }}';
+                                      } else {
+                                          return '{% static 'blog/images/default_background_post.png' %}';
+                                      }
+                                  }
                                   document.write(VK.Share.button({
                                       title: "{{ post.title }}",
-                                      image: "{{ request.scheme }}://{{ request.get_host }}{{ post.background_image.url }}"
+                                      image: "{{ request.scheme }}://{{ request.get_host }}" +
+                                          checkPostBackgroundImage('{{ post.background_image }}')
                                   }, {
                                       type: "custom",
                                       text: "<span class='icon icon-xs icon-hover-gray " +
