@@ -25,7 +25,7 @@ class Post(models.Model):
     creation_time = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
     background_image = models.ImageField(upload_to='blog_post_background/%Y/%m/%d/',
                                          blank=True, verbose_name='Картинка на фоне')
-    author = models.ForeignKey('users.CustomUser', on_delete=models.CASCADE, null=True,
+    author = models.ForeignKey('users.CustomUser', on_delete=models.SET('Аноним'), null=True,
                                verbose_name='Автор')
     category = models.ForeignKey(Category, on_delete=models.PROTECT, default=None,
                                  related_name='posts', verbose_name='Категория')
