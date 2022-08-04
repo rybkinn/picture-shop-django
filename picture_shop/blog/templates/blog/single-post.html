@@ -71,16 +71,28 @@
                         <div class="divider divider-5"></div>
                         <div class="post-author unit unit-spacing-md unit-sm-horizontal">
                             <div class="unit-left">
-                                <img src="{% static 'images/single-post-author-150x150.jpg' %}"
-                                     alt="" width="150" height="150"> </div>
+                                {% if post.author.avatar %}
+                                    <img src="{{ post.author.avatar.url }}" alt="" width="150" height="150">
+                                {% else %}
+                                    <img src="{% static 'users/images/default_avatar.jpg' %}" alt="" width="150" height="150">
+                                {% endif %}
+                            </div>
                             <div class="unit-body">
-                                <h5><a class="heading-link" href="#">Светлана Мельникова</a></h5>
-                                <p class="position">Художник, блогер</p>
-                                <p>Я профессиональный блогер, интересующийся всем, что происходит в
-                                    киберпространстве. Стараюсь сделать этот сайт лучшим местом для
-                                    посещения пользователями. Публикую только те статьи, которые
-                                    имеют отношение к тематике сайта и анализирую комментарии всех
-                                    посетителей, чтобы удовлетворить их потребности.</p>
+                                <h5>
+                                    <a class="heading-link" href="#">
+                                        {{ post.author.first_name }} {{ post.author.last_name }}
+                                    </a>
+                                </h5>
+                                <p class="position">
+                                    {% for profession in post.author.profession.values %}
+                                        {% if forloop.last %}
+                                            {{ profession.name }}
+                                        {% else %}
+                                            {{ profession.name }},
+                                        {% endif %}
+                                    {% endfor %}
+                                </p>
+                                <p>{{ post.author.about }}</p>
                             </div>
                         </div>
                     </div>
