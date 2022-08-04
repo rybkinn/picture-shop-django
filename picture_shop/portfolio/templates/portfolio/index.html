@@ -186,16 +186,24 @@
 
         {% for post in posts %}
             <div class="cell-sm-6 cell-flex">
-                <article class="post-grid custom-bg-image"
-                    style="background-image: url({{ post.background_image.url }});">
+                {% if post.background_image %}
+                    <article class="post-grid custom-bg-image" style="background-image: url({{ post.background_image.url }});">
+                {% else %}
+                    <article class="post-grid custom-bg-image" style="background-image: url({% static 'blog/images/default_background_post.png' %});">
+                {% endif %}
                     <div class="post-item">
                         <div class="post-author">
                             <a class="author-media" href="#">
                                 {% for user in users %}
                                     {% if user.username|lower == post.author|lower %}
-                                        <img src="{{ user.avatar.url }}" alt="" width="50" ></a>
+                                        {% if user.avatar %}
+                                            <img src="{{ user.avatar.url }}" alt="" width="50" >
+                                        {% else %}
+                                            <img src="{% static 'users/images/default_avatar.jpg' %}" alt="" width="50" >
+                                        {% endif %}
                                     {% endif %}
                                 {% endfor %}
+                            </a>
                             <a class="author-name" href="#">{{ post.author }}</a>
                         </div>
                     </div>
