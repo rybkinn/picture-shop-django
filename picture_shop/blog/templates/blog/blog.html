@@ -81,19 +81,6 @@
                 </div>
             </div>
 
-            <script src="{% static 'js/jquery.min.js' %}"></script>
-            <script>
-                let start_posts_number = {{ start_posts_number }};
-                let blog_url = '{% url 'blog' %}';
-                let search_url = '{% url 'search' %}';
-                let archive_url = '{% url 'archive' %}';
-                let is_category_page = Boolean('{{ category_slug }}');
-                let post_slug_url = '{% url 'single-post' 'ajax_hoOJmiSf9N' %}';
-                let background_post_default_url = '{% static 'blog/images/default_background_post.png' %}';
-                let user_avatar_default_url = '{% static 'users/images/default_avatar.jpg' %}';
-                let media_prefix = '{% get_media_prefix %}';
-            </script>
-
             <div class="cell-sm-10 cell-md-4">
                 <div class="widget-list">
                     {% get_search %}
@@ -105,4 +92,20 @@
         </div>
     </div>
 </section>
+{% endblock %}
+
+{% block include_js %}
+    <script src="{% static 'blog/js/ajax.js' %}"></script>
+    <script src="{% static 'blog/js/sidebar.js' %}"></script>
+    <script type="text/javascript">
+        let start_posts_number = {{ start_posts_number }};
+        let blog_url = '{% url 'blog' %}';
+        let search_url = '{% url 'search' %}';
+        let archive_url = '{% url 'archive' %}';
+        let is_category_page = Boolean('{{ category_slug }}');
+        let post_slug_url = '{% url 'single-post' 'ajax_hoOJmiSf9N' %}';
+        let background_post_default_url = '{% static 'blog/images/default_background_post.png' %}';
+        let user_avatar_default_url = '{% static 'users/images/default_avatar.jpg' %}';
+        let media_prefix = '{% get_media_prefix %}';
+    </script>
 {% endblock %}

@@ -26,8 +26,8 @@
     </div>
     <script src="{% static 'js/html5shiv.min.js' %}"></script>
   <![endif] -->
-{% block head %}
-{% endblock %}
+  {% block include_vk_button %}
+  {% endblock %}
 </head>
 
 <body>
@@ -58,6 +58,8 @@
   <!-- Javascript-->
   <script src="{% static 'js/core.min.js' %}"></script>
   <script src="{% static 'js/script.js' %}"></script>
+  {% block include_js %}
+  {% endblock %}
 </body>
 
 </html>

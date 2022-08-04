@@ -4,7 +4,7 @@
 
 {% block title %}Болг пост{% endblock %}
 
-{% block head %}
+{% block include_vk_button %}
     <script type="text/javascript" src="https://vk.com/js/api/share.js?93" charset="windows-1251">
     </script>
 {% endblock %}
@@ -209,9 +209,7 @@
                     </div>
                 </article>
             </div>
-            <script>
-                let blog_post_url = '{% url 'single-post' 't1' %}'.replace('t1', '').slice(0, -1);
-            </script>
+
             <div class="cell-sm-10 cell-md-4">
                 <div class="widget-list">
                     {% get_search %}
@@ -225,4 +223,10 @@
         </div>
     </div>
 </section>
+{% endblock %}
+
+{% block include_js %}
+    <script>
+        let blog_post_url = '{% url 'single-post' 't1' %}'.replace('t1', '').slice(0, -1);
+    </script>
 {% endblock %}
