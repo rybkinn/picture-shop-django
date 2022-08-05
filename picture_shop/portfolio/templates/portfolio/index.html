@@ -20,12 +20,12 @@
         <h3>Несколько слов обо мне</h3>
         <p>Меня зовут Саманта Морган, и я рисую с юных лет. Нахожу вдохновение в инновационных стилях современного и
           городского искусства, таких как граффити и&nbsp;иллюстрации. Я твердо верю, что искусство - это глобальная
-          форма общения.</p><a class="button button-primary-outline" href="about-me.html"><span>Узнать
+          форма общения.</p><a class="button button-primary-outline" href="{% url 'about-me' %}"><span>Узнать
             больше</span></a>
       </div>
       <div class="cell-sm-10 cell-md-6 cell-lg-5 cell-lg-preffix-1 item-image wow fadeInUpSmall"
         data-wow-delay=".2s">
-        <div class="item-image-wrap"><img src="{% static 'images/home-3-1-500x325.jpg' %}" alt="" width="500" height="325"></div>
+        <div class="item-image-wrap"><img src="{% static 'portfolio/images/home-3-1-500x325.jpg' %}" alt="" width="500" height="325"></div>
       </div>
     </div>
   </div>
@@ -36,27 +36,28 @@
     <div class="title-block-1">
       <h3>Мои работы</h3>
     </div>
+
     <div class="range range-30 range-center text-left range-fix">
       <div class="cell-xs-11 cell-sm-4 wow fadeInUpSmall project-wrapper">
-        <div class="project post-shadow bounding-fix"><a class="img-mobile-height" href="portrait.html"><img
+        <div class="project post-shadow bounding-fix"><a class="img-mobile-height" href="{% url 'portrait' %}"><img
               src="{% static 'images/project-1-370x510.jpg' %}" alt="" width="370" height="510"></a>
           <div class="caption">
-            <h4 class="project-title"><a class="heading-link" href="portrait.html">Шторм</a></h4>
+            <h4 class="project-title"><a class="heading-link" href="{% url 'portrait' %}">Шторм</a></h4>
             <p class="project-exeption">Это&nbsp;одна из моих последних работ на морскую и океанскую тематику.</p>
           </div>
         </div>
-        <div class="project post-shadow bounding-fix"><a class="img-mobile-height" href="portrait.html"><img
+        <div class="project post-shadow bounding-fix"><a class="img-mobile-height" href="{% url 'portrait' %}"><img
               src="{% static 'images/project-2-370x280.jpg' %}" alt="" width="370" height="280"></a>
           <div class="caption">
-            <h4 class="project-title"><a class="heading-link" href="portrait.html">Акварельный
+            <h4 class="project-title"><a class="heading-link" href="{% url 'portrait' %}">Акварельный
                 портрет</a></h4>
             <p class="project-exeption">Джейн Уильямс, моя подруга и коллега, попросила написать ее портрет.</p>
           </div>
         </div>
-        <div class="project post-shadow bounding-fix"><a class="img-mobile-height" href="portrait.html"><img
+        <div class="project post-shadow bounding-fix"><a class="img-mobile-height" href="{% url 'portrait' %}"><img
               src="{% static 'images/project-3-370x460.jpg' %}" alt="" width="370" height="460"></a>
           <div class="caption">
-            <h4 class="project-title"><a class="heading-link" href="portrait.html">Акварельный
+            <h4 class="project-title"><a class="heading-link" href="{% url 'portrait' %}">Акварельный
                 пейзаж</a></h4>
             <p class="project-exeption">В прошлом году&nbsp;на Ибице мною написан этот удивительный морской
               пейзаж.</p>
@@ -64,7 +65,7 @@
         </div>
       </div>
       <div class="cell-xs-11 cell-sm-4 wow fadeInUpSmall project-wrapper" data-wow-delay=".2s">
-        <div class="project post-shadow bounding-fix"><a class="img-mobile-height" href="portrait.html"><img
+        <div class="project post-shadow bounding-fix"><a class="img-mobile-height" href="{% url 'portrait' %}"><img
               src="{% static 'images/project-4-370x430.jpg' %}" alt="" width="370" height="430"></a>
           <div class="caption">
             <h4 class="project-title"><a class="heading-link" href="portrait.html">Руины древней
@@ -72,46 +73,46 @@
             <p class="project-exeption">Эта картина написана в Шотландии за один день.</p>
           </div>
         </div>
-        <div class="project post-shadow bounding-fix"><a class="img-mobile-height" href="portrait.html"><img
+        <div class="project post-shadow bounding-fix"><a class="img-mobile-height" href="{% url 'portrait' %}"><img
               src="{% static 'images/project-5-370x420.jpg' %}" alt="" width="370" height="420"></a>
           <div class="caption">
-            <h4 class="project-title"><a class="heading-link" href="portrait.html">Березы
+            <h4 class="project-title"><a class="heading-link" href="{% url 'portrait' %}">Березы
                 осенью</a></h4>
             <p class="project-exeption">Я люблю рисовать осенние деревья, и эта работа - прекрасный пример.</p>
           </div>
         </div>
-        <div class="project post-shadow bounding-fix"><a class="img-mobile-height" href="portrait.html"><img
+        <div class="project post-shadow bounding-fix"><a class="img-mobile-height" href="{% url 'portrait' %}"><img
               src="{% static 'images/project-6-370x370.jpg' %}" alt="" width="370" height="370"></a>
           <div class="caption">
-            <h4 class="project-title"><a class="heading-link" href="portrait.html">Весенний
+            <h4 class="project-title"><a class="heading-link" href="{% url 'portrait' %}">Весенний
                 портрет</a></h4>
             <p class="project-exeption">Этот портрет - заказ от одного из моих итальянских друзей.</p>
           </div>
         </div>
       </div>
       <div class="cell-xs-11 cell-sm-4 wow fadeInUpSmall project-wrapper" data-wow-delay="0.4s">
-        <div class="project post-shadow bounding-fix"><a class="img-mobile-height" href="portrait.html"><img
+        <div class="project post-shadow bounding-fix"><a class="img-mobile-height" href="{% url 'portrait' %}"><img
               src="{% static 'images/project-7-370x370.jpg' %}" alt="" width="370" height="370"></a>
           <div class="caption">
-            <h4 class="project-title"><a class="heading-link" href="portrait.html">Любовники</a>
+            <h4 class="project-title"><a class="heading-link" href="{% url 'portrait' %}">Любовники</a>
             </h4>
             <p class="project-exeption">Картина была написана за два дня для заказчиков из Сан-Диего, которые хотели
               чего-то особенного.</p>
           </div>
         </div>
-        <div class="project post-shadow bounding-fix"><a class="img-mobile-height" href="portrait.html"><img
+        <div class="project post-shadow bounding-fix"><a class="img-mobile-height" href="{% url 'portrait' %}"><img
               src="{% static 'images/project-8-370x320.jpg' %}" alt="" width="370" height="320"></a>
           <div class="caption">
-            <h4 class="project-title"><a class="heading-link" href="portrait.html">Зеленый
+            <h4 class="project-title"><a class="heading-link" href="{% url 'portrait' %}">Зеленый
                 пейзаж</a></h4>
             <p class="project-exeption">Еще одна абстрактная работа, которая была на&nbsp;выставке Morgan Paintings
               2016.</p>
           </div>
         </div>
-        <div class="project post-shadow bounding-fix"><a class="img-mobile-height" href="portrait.html"><img
+        <div class="project post-shadow bounding-fix"><a class="img-mobile-height" href="{% url 'portrait' %}"><img
               src="{% static 'images/project-9-370x460.jpg' %}" alt="" width="370" height="460"></a>
           <div class="caption">
-            <h4 class="project-title"><a class="heading-link" href="portrait.html">Летние цветы</a>
+            <h4 class="project-title"><a class="heading-link" href="{% url 'portrait' %}">Летние цветы</a>
             </h4>
             <p class="project-exeption">Одна из моих последних работ, которая недавно была выставлена в Арт-центре
               Лос-Анджелеса.</p>
@@ -119,7 +120,7 @@
         </div>
       </div>
     </div>
-    <a class="button button-primary" href="services.html"><span>Мое&nbsp;портфолио</span></a>
+    <a class="button button-primary" href="{% url 'services' %}"><span>Мое&nbsp;портфолио</span></a>
   </div>
 </section>
 <section class="section section-lg bg-white novi-background bg-cover"
@@ -140,7 +141,7 @@
         <div class="blurb-boxed">
           <div class="blurb-inner">
             <div class="icon novi-icon mdi mdi-account"></div>
-            <h4 class="blurb-title"><a href="portrait.html">Портрет</a></h4>
+            <h4 class="blurb-title"><a href="{% url 'portrait' %}">Портрет</a></h4>
             <p class="blurb-content">Портреты на заказ.</p>
           </div>
         </div>
@@ -173,7 +174,7 @@
         </div>
       </div>
     </div>
-    <a class="button button-primary" href="services.html"><span>Смотреть все услуги</span></a>
+    <a class="button button-primary" href="{% url 'services' %}"><span>Смотреть все услуги</span></a>
   </div>
 </section>
 <section class="section novi-background bg-cover section-lg bg-gray-light"
@@ -225,7 +226,7 @@
         {% endfor %}
 
     </div>
-    <a class="button button-primary-outline" href="grid-blog.html"><span>Смотреть все посты в блоге</span></a>
+    <a class="button button-primary-outline" href="{% url 'blog' %}"><span>Смотреть все посты в блоге</span></a>
   </div>
 </section>
 {% endblock %}
