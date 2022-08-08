@@ -30,7 +30,7 @@
     </div>
   </div>
 </section>
-<section class="section section-lg bg-gray-light novi-background bg-cover"
+<section id="my-work" class="section section-lg bg-gray-light novi-background bg-cover"
   data-preset="{&quot;title&quot;:&quot;My Paintings&quot;,&quot;category&quot;:&quot;about&quot;,&quot;id&quot;:&quot;my-paintings&quot;}">
   <div class="shell text-center">
     <div class="title-block-1">
@@ -38,89 +38,53 @@
     </div>
 
     <div class="range range-30 range-center text-left range-fix">
-      <div class="cell-xs-11 cell-sm-4 wow fadeInUpSmall project-wrapper">
-        <div class="project post-shadow bounding-fix"><a class="img-mobile-height" href="{% url 'portrait' %}"><img
-              src="{% static 'images/project-1-370x510.jpg' %}" alt="" width="370" height="510"></a>
+      <div id="my-work-1-column" class="cell-xs-11 cell-sm-4 wow fadeInUpSmall project-wrapper">
+        {% for my_work_1 in my_works_1 %}
+        <div class="project post-shadow bounding-fix">
+            <a class="img-mobile-height" href="{% url 'portrait' %}">
+                <img src="{{ my_work_1.picture.url }}" alt="" width="370" height="280">
+            </a>
           <div class="caption">
-            <h4 class="project-title"><a class="heading-link" href="{% url 'portrait' %}">Шторм</a></h4>
-            <p class="project-exeption">Это&nbsp;одна из моих последних работ на морскую и океанскую тематику.</p>
-          </div>
-        </div>
-        <div class="project post-shadow bounding-fix"><a class="img-mobile-height" href="{% url 'portrait' %}"><img
-              src="{% static 'images/project-2-370x280.jpg' %}" alt="" width="370" height="280"></a>
-          <div class="caption">
-            <h4 class="project-title"><a class="heading-link" href="{% url 'portrait' %}">Акварельный
-                портрет</a></h4>
-            <p class="project-exeption">Джейн Уильямс, моя подруга и коллега, попросила написать ее портрет.</p>
-          </div>
-        </div>
-        <div class="project post-shadow bounding-fix"><a class="img-mobile-height" href="{% url 'portrait' %}"><img
-              src="{% static 'images/project-3-370x460.jpg' %}" alt="" width="370" height="460"></a>
-          <div class="caption">
-            <h4 class="project-title"><a class="heading-link" href="{% url 'portrait' %}">Акварельный
-                пейзаж</a></h4>
-            <p class="project-exeption">В прошлом году&nbsp;на Ибице мною написан этот удивительный морской
-              пейзаж.</p>
-          </div>
-        </div>
-      </div>
-      <div class="cell-xs-11 cell-sm-4 wow fadeInUpSmall project-wrapper" data-wow-delay=".2s">
-        <div class="project post-shadow bounding-fix"><a class="img-mobile-height" href="{% url 'portrait' %}"><img
-              src="{% static 'images/project-4-370x430.jpg' %}" alt="" width="370" height="430"></a>
-          <div class="caption">
-            <h4 class="project-title"><a class="heading-link" href="portrait.html">Руины древней
-                крепости</a></h4>
-            <p class="project-exeption">Эта картина написана в Шотландии за один день.</p>
-          </div>
-        </div>
-        <div class="project post-shadow bounding-fix"><a class="img-mobile-height" href="{% url 'portrait' %}"><img
-              src="{% static 'images/project-5-370x420.jpg' %}" alt="" width="370" height="420"></a>
-          <div class="caption">
-            <h4 class="project-title"><a class="heading-link" href="{% url 'portrait' %}">Березы
-                осенью</a></h4>
-            <p class="project-exeption">Я люблю рисовать осенние деревья, и эта работа - прекрасный пример.</p>
-          </div>
-        </div>
-        <div class="project post-shadow bounding-fix"><a class="img-mobile-height" href="{% url 'portrait' %}"><img
-              src="{% static 'images/project-6-370x370.jpg' %}" alt="" width="370" height="370"></a>
-          <div class="caption">
-            <h4 class="project-title"><a class="heading-link" href="{% url 'portrait' %}">Весенний
-                портрет</a></h4>
-            <p class="project-exeption">Этот портрет - заказ от одного из моих итальянских друзей.</p>
-          </div>
-        </div>
-      </div>
-      <div class="cell-xs-11 cell-sm-4 wow fadeInUpSmall project-wrapper" data-wow-delay="0.4s">
-        <div class="project post-shadow bounding-fix"><a class="img-mobile-height" href="{% url 'portrait' %}"><img
-              src="{% static 'images/project-7-370x370.jpg' %}" alt="" width="370" height="370"></a>
-          <div class="caption">
-            <h4 class="project-title"><a class="heading-link" href="{% url 'portrait' %}">Любовники</a>
+            <h4 class="project-title">
+                <a class="heading-link" href="{% url 'portrait' %}">{{ my_work_1.title }}</a>
             </h4>
-            <p class="project-exeption">Картина была написана за два дня для заказчиков из Сан-Диего, которые хотели
-              чего-то особенного.</p>
+            <p class="project-exeption">{{ my_work_1.description }}</p>
           </div>
         </div>
-        <div class="project post-shadow bounding-fix"><a class="img-mobile-height" href="{% url 'portrait' %}"><img
-              src="{% static 'images/project-8-370x320.jpg' %}" alt="" width="370" height="320"></a>
+        {% endfor %}
+      </div>
+      <div id="my-work-2-column" class="cell-xs-11 cell-sm-4 wow fadeInUpSmall project-wrapper" data-wow-delay=".2s">
+        {% for my_work_2 in my_works_2 %}
+        <div class="project post-shadow bounding-fix">
+            <a class="img-mobile-height" href="{% url 'portrait' %}">
+                <img src="{{ my_work_2.picture.url }}" alt="" width="370" height="280">
+            </a>
           <div class="caption">
-            <h4 class="project-title"><a class="heading-link" href="{% url 'portrait' %}">Зеленый
-                пейзаж</a></h4>
-            <p class="project-exeption">Еще одна абстрактная работа, которая была на&nbsp;выставке Morgan Paintings
-              2016.</p>
-          </div>
-        </div>
-        <div class="project post-shadow bounding-fix"><a class="img-mobile-height" href="{% url 'portrait' %}"><img
-              src="{% static 'images/project-9-370x460.jpg' %}" alt="" width="370" height="460"></a>
-          <div class="caption">
-            <h4 class="project-title"><a class="heading-link" href="{% url 'portrait' %}">Летние цветы</a>
+            <h4 class="project-title">
+                <a class="heading-link" href="{% url 'portrait' %}">{{ my_work_2.title }}</a>
             </h4>
-            <p class="project-exeption">Одна из моих последних работ, которая недавно была выставлена в Арт-центре
-              Лос-Анджелеса.</p>
+            <p class="project-exeption">{{ my_work_2.description }}</p>
           </div>
         </div>
+        {% endfor %}
+      </div>
+      <div id="my-work-3-column" class="cell-xs-11 cell-sm-4 wow fadeInUpSmall project-wrapper" data-wow-delay="0.4s">
+        {% for my_work_3 in my_works_3 %}
+        <div class="project post-shadow bounding-fix">
+            <a class="img-mobile-height" href="{% url 'portrait' %}">
+                <img src="{{ my_work_3.picture.url }}" alt="" width="370" height="280">
+            </a>
+          <div class="caption">
+            <h4 class="project-title">
+                <a class="heading-link" href="{% url 'portrait' %}">{{ my_work_3.title }}</a>
+            </h4>
+            <p class="project-exeption">{{ my_work_3.description }}</p>
+          </div>
+        </div>
+        {% endfor %}
       </div>
     </div>
-    <a class="button button-primary" href="{% url 'services' %}"><span>Мое&nbsp;портфолио</span></a>
+    <a class="button button-primary" href="{% url 'services' %}"><span>Мое портфолио</span></a>
   </div>
 </section>
 <section class="section section-lg bg-white novi-background bg-cover"
@@ -229,4 +193,8 @@
     <a class="button button-primary-outline" href="{% url 'blog' %}"><span>Смотреть все посты в блоге</span></a>
   </div>
 </section>
+{% endblock %}
+
+{% block include_js %}
+    <script src="{% static 'portfolio/js/hide.js' %}"></script>
 {% endblock %}

@@ -5,8 +5,9 @@ from django.template.defaultfilters import truncatechars
 class MyWork(models.Model):
     title = models.CharField(max_length=50, verbose_name='Название работы')
     description = models.TextField(verbose_name='Описание')
-    picture = models.ImageField(upload_to='my_works/%Y/%m/%d/', blank=True, verbose_name='Картина')
+    picture = models.ImageField(upload_to='my_works/%Y/%m/%d/', verbose_name='Картина')
     is_published = models.BooleanField(default=True, verbose_name='Опубликовано')
+    creation_time = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
 
     class Meta:
         verbose_name = 'Мою работу'
