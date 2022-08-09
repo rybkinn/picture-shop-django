@@ -178,7 +178,7 @@
                                 <time>{{ post.creation_time }}</time>
                             </div>
                             <h4 class="post-title">
-                                <a href="{{ post.slug }}">{{ post.title }}</a>
+                                <a href="{% url 'single-post' slug=post.slug %}">{{ post.title }}</a>
                             </h4>
                             <div class="post-exeption">
                                 <p>{{ post.description|truncatewords_html:20|safe }}</p>
