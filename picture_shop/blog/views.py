@@ -27,10 +27,18 @@ class BlogPost(PostSettings, ListView):
         return Post.objects.filter(is_archived=False).order_by('-creation_time')[:self.start_posts_number]
 
 
-class SearchPost(PostSettings, ListView):
+class BaseSearch(PostSettings, ListView):
     template_name = 'blog/blog.html'
     context_object_name = 'posts'
 
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['start_posts_number'] = self.start_posts_number
+        context['users'] = CustomUser.objects.all()
+        return context
+
+
+class SearchPost(BaseSearch):
     def get_queryset(self):
         return Post.objects.filter(title__icontains=self.request.GET.get('s'),
                                    is_archived=False)[:self.start_posts_number]
@@ -38,8 +46,17 @@ class SearchPost(PostSettings, ListView):
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
         context['s'] = f"s={self.request.GET.get('s')}&"
-        context['start_posts_number'] = self.start_posts_number
-        context['users'] = CustomUser.objects.all()
+        return context
+
+
+class SearchAuthorPost(BaseSearch):
+    def get_queryset(self):
+        return Post.objects.filter(author__username=self.request.GET.get('author'),
+                                   is_archived=False)[:self.start_posts_number]
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['author'] = f"author={self.request.GET.get('author')}&"
         return context
 
 
@@ -58,6 +75,8 @@ class AjaxShowMorePosts(PostSettings, View):
                 posts_left, sent_posts = self.__get_posts_blog_archive_page(request.GET)
             case 'category_page':
                 posts_left, sent_posts = self.__get_posts_category_page(request.GET)
+            case 'search_author_page':
+                posts_left, sent_posts = self.__get_posts_search_author_page(request.GET)
             case _:
                 raise ValueError(kwargs['ajax_page'])
 
@@ -141,6 +160,22 @@ class AjaxShowMorePosts(PostSettings, View):
             category__slug=self.kwargs['slug'], is_archived=False).count() - count_posts_displayed
         sent_posts = Post.objects.filter(
             category__slug=self.kwargs['slug'], is_archived=False).order_by('-creation_time')[
+                     count_posts_displayed:count_posts_displayed + self.count_posts_add]
+        return posts_left, sent_posts
+
+    def __get_posts_search_author_page(self, get_param: QueryDict) -> tuple[int, QuerySet]:
+        """
+        Requesting more posts for the blog author page from the database.
+        :param get_param: incoming GET parameters.
+        :return: how many posts are left in the database, posts to send.
+        """
+        count_posts_displayed = int(get_param.get('count_posts'))
+        posts_left = Post.objects.filter(
+            author__username=self.request.GET.get('author'),
+            is_archived=False).count() - count_posts_displayed
+        sent_posts = Post.objects.filter(
+            author__username=self.request.GET.get('author'),
+            is_archived=False).order_by('-creation_time')[
                      count_posts_displayed:count_posts_displayed + self.count_posts_add]
         return posts_left, sent_posts
 

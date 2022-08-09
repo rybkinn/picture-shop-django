@@ -79,7 +79,7 @@
                             </div>
                             <div class="unit-body">
                                 <h5>
-                                    <a class="heading-link" href="#">
+                                    <a class="heading-link" href="{% url 'search-author' %}?author={{ post.author }}">
                                         {{ post.author.first_name }} {{ post.author.last_name }}
                                     </a>
                                 </h5>

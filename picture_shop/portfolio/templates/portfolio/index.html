@@ -158,7 +158,7 @@
                 {% endif %}
                     <div class="post-item">
                         <div class="post-author">
-                            <a class="author-media" href="#">
+                            <a class="author-media" href="{% url 'search-author' %}?author={{ post.author }}">
                                 {% for user in users %}
                                     {% if user.username|lower == post.author|lower %}
                                         {% if user.avatar %}
@@ -169,7 +169,7 @@
                                     {% endif %}
                                 {% endfor %}
                             </a>
-                            <a class="author-name" href="#">{{ post.author }}</a>
+                            <a class="author-name">{{ post.author }}</a>
                         </div>
                     </div>
                     <div class="post-item">

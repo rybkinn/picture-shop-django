@@ -37,7 +37,7 @@
                         {% endif %}
                             <div class="post-item">
                                 <div class="post-author">
-                                    <a class="author-media">
+                                    <a class="author-media" href="{% url 'search-author' %}?author={{ post.author }}">
                                         {% for user in users %}
                                             {% if user.username|lower == post.author|lower %}
                                                 {% if user.avatar %}
@@ -101,6 +101,7 @@
         let start_posts_number = {{ start_posts_number }};
         let blog_url = '{% url 'blog' %}';
         let search_url = '{% url 'search' %}';
+        let search_author_url = '{% url 'search-author' %}';
         let archive_url = '{% url 'archive' %}';
         let is_category_page = Boolean('{{ category_slug }}');
         let post_slug_url = '{% url 'single-post' 'ajax_hoOJmiSf9N' %}';

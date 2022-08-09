@@ -8,6 +8,8 @@ urlpatterns = [
     path('post/<slug:slug>/', SinglePost.as_view(), name='single-post'),
     path('search/', SearchPost.as_view(), name='search'),
     path('search/show_more_posts/', AjaxShowMorePosts.as_view(), {'ajax_page': 'blog_search_page'}),
+    path('search/author/', SearchAuthorPost.as_view(), name='search-author'),
+    path('search/author/show_more_posts/', AjaxShowMorePosts.as_view(), {'ajax_page': 'search_author_page'}),
     path('archive/', ArchivePost.as_view(), name='archive'),
     path('archive/show_more_posts/', AjaxShowMorePosts.as_view(), {'ajax_page': 'blog_archive_page'}),
     path('category/<slug:slug>/', CategoryPost.as_view(), name='category'),

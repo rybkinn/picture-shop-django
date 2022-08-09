@@ -10,6 +10,7 @@ $document.ready(function () {
         if (window.location.pathname === blog_url ||
             window.location.pathname === search_url ||
             window.location.pathname === archive_url ||
+            window.location.pathname === search_author_url ||
             is_category_page) {
             if (block_posts.childElementCount < start_posts_number) {
                 post_bottom.remove()
@@ -29,6 +30,11 @@ $document.ready(function () {
             data_params = {
                 count_posts: block_posts.childElementCount,
                 search_request: get_params.get("s"),
+            }
+        } else if (window.location.pathname === search_author_url) {
+            data_params = {
+                count_posts: block_posts.childElementCount,
+                author: get_params.get("author"),
             }
         } else if (window.location.pathname === archive_url) {
             data_params = {
@@ -76,6 +82,7 @@ $document.ready(function () {
                             let title = _json[item]['title'];
                             let author = _json[item]['author'];
                             let author_avatar = checkAuthorAvatar(_json[item]['author_avatar']);
+                            let search_author_get_request = search_author_url + '?author=' + author;
 
                             if (posts_left <= 0) {
                                 $('#show_more_posts').remove();
@@ -86,7 +93,7 @@ $document.ready(function () {
                                     style="background-image: url(${background_image});">
                                     <div class="post-item">
                                         <div class="post-author">
-                                            <a class="author-media">
+                                            <a class="author-media" href="${search_author_get_request}">
                                                 <img src="${author_avatar}" alt="" width="50" ></a>
                                             <a class="author-name">${author}</a>
                                         </div>
