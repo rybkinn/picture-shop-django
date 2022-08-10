@@ -1,4 +1,5 @@
 {% load static %}
+{% load base_template %}
 
 <!DOCTYPE html>
 <html class="wide wow-animation" lang="en" data-preview="home.jpg">
@@ -51,7 +52,7 @@
     {% block content %}
     {% endblock %}
 
-    {% include 'inc/_footer.html' %}
+    {% get_footer %}
   </div>
   <!-- Global Mail-form Output-->
   <div class="snackbars" id="form-output-global"></div>

@@ -12,7 +12,7 @@
                         <div class="divider divider-3"></div>
                         <ul class="list-marked">
                             <li><a href="{% url 'about-me' %}">Обо мне</a></li>
-                            <li><a href="#">Портфолио</a></li>
+                            <li><a href="{% url 'portrait' %}">Портрет</a></li>
                             <li><a href="{% url 'services' %}">Услуги</a></li>
                             <li><a href="{% url 'blog' %}">Блог</a></li>
                             <li><a href="{% url 'contacts' %}">Контакты</a></li>
@@ -23,12 +23,9 @@
                     <h4>Теги</h4>
                     <div class="divider divider-3"></div>
                     <ul class="list-tags-inline big text-primary">
-                        <li><a class="tag" href="#">Изобразительное искусство</a></li>
-                        <li><a class="tag" href="#">Картины</a></li>
-                        <li><a class="tag" href="#">Урбан</a></li>
-                        <li><a class="tag" href="#">Современное искусство</a></li>
-                        <li><a class="tag" href="#">Новости</a></li>
-                        <li><a class="tag" href="#">Уличный художник</a></li>
+                        {% for tag in tags %}
+                            <li><a class="tag" href="#">{{ tag.name }}</a></li>
+                        {% endfor %}
                     </ul>
                 </div>
                 <div class="cell-sm-6 cell-lg-3">
