@@ -1,6 +1,8 @@
 from django.db import models
 from django.urls import reverse
 
+from portfolio.models import Tag
+
 
 class Category(models.Model):
     title = models.CharField(max_length=255, unique=True, verbose_name='Название')
@@ -29,6 +31,7 @@ class Post(models.Model):
                                verbose_name='Автор')
     category = models.ForeignKey(Category, on_delete=models.PROTECT, default=None,
                                  related_name='posts', verbose_name='Категория')
+    tag = models.ManyToManyField(Tag, blank=True, verbose_name='Тег')
     is_archived = models.BooleanField(default=False, verbose_name='В архиве')
 
     class Meta:
