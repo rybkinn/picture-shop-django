@@ -1,0 +1,9 @@
+<div id='sidebar_tag' class="widget-list-item">
+    <h4>Теги</h4>
+    <div class="divider divider-5"></div>
+    <ul class="list-tags-inline big text-primary">
+        {% for tag in tag_items %}
+            <li><a class="tag" href="{% url 'post-tag' slug=tag.slug %}">{{ tag.name }}</a></li>
+        {% endfor %}
+    </ul>
+</div>

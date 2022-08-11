@@ -7,6 +7,7 @@ from django.db.models.functions import TruncMonth, TruncYear
 from django.utils.timezone import utc
 
 from blog.models import Post, Gallery, Category
+from portfolio.models import Tag
 
 
 register = template.Library()
@@ -59,3 +60,9 @@ def get_latest_posts():
 @register.inclusion_tag('blog/widgets/about_me.html')
 def get_about_me():
     pass
+
+
+@register.inclusion_tag('blog/widgets/tag.html')
+def get_tag():
+    tag_items = Tag.objects.all()
+    return {'tag_items': tag_items}

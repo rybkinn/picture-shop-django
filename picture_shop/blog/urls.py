@@ -1,4 +1,4 @@
-from django.urls import path, re_path
+from django.urls import path
 
 from .views import *
 
@@ -14,4 +14,6 @@ urlpatterns = [
     path('archive/show_more_posts/', AjaxShowMorePosts.as_view(), {'ajax_page': 'blog_archive_page'}),
     path('category/<slug:slug>/', CategoryPost.as_view(), name='category'),
     path('category/<slug:slug>/show_more_posts/', AjaxShowMorePosts.as_view(), {'ajax_page': 'category_page'}),
+    path('tag/<slug:slug>/', PostByTag.as_view(), name='post-tag'),
+    path('tag/<slug:slug>/show_more_posts/', AjaxShowMorePosts.as_view(), {'ajax_page': 'tag_page'}),
 ]

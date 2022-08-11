@@ -6,6 +6,7 @@ $document.ready(function () {
 	if (typeof blog_url !== "undefined") {
 		removeArchiveSidebarBlock();
 		removeGallerySidebarBlock();
+		removeTagSidebarBlock();
 	}
 
 	if (typeof blog_post_url !== "undefined") {
@@ -37,6 +38,12 @@ $document.ready(function () {
 		let latest_posts_block = document.getElementById('sidebar_latest_posts')
 		let latest_posts_count = latest_posts_block.getElementsByClassName('post-recent').length
 		if (latest_posts_count === 0) {latest_posts_block.remove()}
+	}
+
+	function removeTagSidebarBlock() {
+		let tag_block = document.getElementById('sidebar_tag')
+		let tag_elements_count = tag_block.querySelector('ul').childElementCount
+		if (tag_elements_count === 0) {tag_block.remove()}
 	}
 
 });

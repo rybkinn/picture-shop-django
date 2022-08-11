@@ -11,7 +11,7 @@ from .models import Post
 from .utils import PostSettings
 
 
-class BlogPost(PostSettings, ListView):
+class BaseBlog(PostSettings, ListView):
     model = Post
     template_name = 'blog/blog.html'
     context_object_name = 'posts'
@@ -19,26 +19,17 @@ class BlogPost(PostSettings, ListView):
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Блог'
-        context['users'] = CustomUser.objects.all()
         context['start_posts_number'] = self.start_posts_number
+        context['users'] = CustomUser.objects.all()
         return context
 
+
+class BlogPost(BaseBlog):
     def get_queryset(self):
         return Post.objects.filter(is_archived=False).order_by('-creation_time')[:self.start_posts_number]
 
 
-class BaseSearch(PostSettings, ListView):
-    template_name = 'blog/blog.html'
-    context_object_name = 'posts'
-
-    def get_context_data(self, *, object_list=None, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['start_posts_number'] = self.start_posts_number
-        context['users'] = CustomUser.objects.all()
-        return context
-
-
-class SearchPost(BaseSearch):
+class SearchPost(BaseBlog):
     def get_queryset(self):
         return Post.objects.filter(title__icontains=self.request.GET.get('s'),
                                    is_archived=False)[:self.start_posts_number]
@@ -49,7 +40,7 @@ class SearchPost(BaseSearch):
         return context
 
 
-class SearchAuthorPost(BaseSearch):
+class SearchAuthorPost(BaseBlog):
     def get_queryset(self):
         return Post.objects.filter(author__username=self.request.GET.get('author'),
                                    is_archived=False)[:self.start_posts_number]
@@ -77,6 +68,8 @@ class AjaxShowMorePosts(PostSettings, View):
                 posts_left, sent_posts = self.__get_posts_category_page(request.GET)
             case 'search_author_page':
                 posts_left, sent_posts = self.__get_posts_search_author_page(request.GET)
+            case 'tag_page':
+                posts_left, sent_posts = self.__get_posts_tag_page(request.GET)
             case _:
                 raise ValueError(kwargs['ajax_page'])
 
@@ -179,11 +172,22 @@ class AjaxShowMorePosts(PostSettings, View):
                      count_posts_displayed:count_posts_displayed + self.count_posts_add]
         return posts_left, sent_posts
 
+    def __get_posts_tag_page(self, get_param: QueryDict) -> tuple[int, QuerySet]:
+        """
+        Requesting more posts for the blog tag page from the database.
+        :param get_param: incoming GET parameters.
+        :return: how many posts are left in the database, posts to send.
+        """
+        count_posts_displayed = int(get_param.get('count_posts'))
+        posts_left = Post.objects.filter(
+            tag__slug=self.kwargs['slug'], is_archived=False).count() - count_posts_displayed
+        sent_posts = Post.objects.filter(
+            tag__slug=self.kwargs['slug'], is_archived=False).order_by('-creation_time')[
+                     count_posts_displayed:count_posts_displayed + self.count_posts_add]
+        return posts_left, sent_posts
 
-class ArchivePost(PostSettings, ListView):
-    template_name = 'blog/blog.html'
-    context_object_name = 'posts'
 
+class ArchivePost(BaseBlog):
     def get_queryset(self):
         get_month = self.request.GET.get('month')
         get_year = self.request.GET.get('year')
@@ -194,12 +198,6 @@ class ArchivePost(PostSettings, ListView):
                     creation_time__month=get_month
                 )[:self.start_posts_number]
 
-    def get_context_data(self, *, object_list=None, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['start_posts_number'] = self.start_posts_number
-        context['users'] = CustomUser.objects.all()
-        return context
-
 
 class SinglePost(DetailView):
     model = Post
@@ -207,11 +205,7 @@ class SinglePost(DetailView):
     template_name = 'blog/single-post.html'
 
 
-class CategoryPost(PostSettings, ListView):
-    model = Post
-    context_object_name = 'posts'
-    template_name = 'blog/blog.html'
-
+class CategoryPost(BaseBlog):
     def get_queryset(self):
         return Post.objects.filter(
             category__slug=self.kwargs['slug'],
@@ -220,7 +214,18 @@ class CategoryPost(PostSettings, ListView):
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['start_posts_number'] = self.start_posts_number
         context['category_slug'] = self.kwargs['slug']
-        context['users'] = CustomUser.objects.all()
+        return context
+
+
+class PostByTag(BaseBlog):
+    def get_queryset(self):
+        return Post.objects.filter(
+            tag__slug=self.kwargs['slug'],
+            is_archived=False
+        ).order_by('-creation_time')[:self.start_posts_number]
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['tag_slug'] = self.kwargs['slug']
         return context
