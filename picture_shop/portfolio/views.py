@@ -1,10 +1,10 @@
-from django.views.generic import ListView
+from django.views.generic import ListView, TemplateView
 
 from django.shortcuts import render
 
 from users.models import CustomUser
 from blog.models import Post
-from .models import MyWork
+from .models import MyWork, MyClient
 
 
 class MainPage(ListView):
@@ -27,8 +27,13 @@ class MainPage(ListView):
         return Post.objects.all().order_by('-pk')[:post_count]
 
 
-def about_me(request):
-    return render(request, 'portfolio/about-me.html')
+class AboutMe(TemplateView):
+    template_name = 'portfolio/about-me.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['my_clients'] = MyClient.objects.all().order_by('created_at')
+        return context
 
 
 def contacts(request):
